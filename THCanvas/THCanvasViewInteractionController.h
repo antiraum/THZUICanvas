@@ -10,7 +10,7 @@
 
 @class THCanvasViewRenderer;
 
-@protocol THCanvasElementGestureHandler <NSObject>
+@protocol THCanvasElementGestureHandler <NSObject, UIGestureRecognizerDelegate>
 
 - (void)handleElementViewTapGesture:(UITapGestureRecognizer*)recognizer;
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer;

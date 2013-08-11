@@ -9,7 +9,7 @@
 #import "THCanvasElementView.h"
 #import "THCanvasElement.h"
 
-@interface THCanvasElementView () <UIGestureRecognizerDelegate>
+@interface THCanvasElementView ()
 
 @end
 
@@ -34,16 +34,16 @@
         
         UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPanGesture:)];
         panGestureRecognizer.maximumNumberOfTouches = 1;
-        panGestureRecognizer.delegate = self;
+        panGestureRecognizer.delegate = self.gestureHandler;
         [self addGestureRecognizer:panGestureRecognizer];
         
         UIRotationGestureRecognizer* rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewRotationGesture:)];
-        rotationGestureRecognizer.delegate = self;
-//        [self addGestureRecognizer:rotationGestureRecognizer];
+        rotationGestureRecognizer.delegate = self.gestureHandler;
+        [self addGestureRecognizer:rotationGestureRecognizer];
         
         UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPinchGesture:)];
-        pinchGestureRecognizer.delegate = self;
-//        [self addGestureRecognizer:pinchGestureRecognizer];
+        pinchGestureRecognizer.delegate = self.gestureHandler;
+        [self addGestureRecognizer:pinchGestureRecognizer];
     }
     return self;
 }
@@ -74,17 +74,11 @@
 {
     if (! self.element) return;
     
+    self.transform = CGAffineTransformIdentity;
     self.frame = self.element.frame;
+    if (self.element.rotation != 0)
+        self.transform = CGAffineTransformMakeRotation(self.element.rotation);
     self.backgroundColor = self.element.backgroundColor;
-}
-
-#pragma mark - UIGestureRecognizerDelegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    // can only interact with one element at a time
-    return (gestureRecognizer.view == otherGestureRecognizer.view);
 }
 
 @end

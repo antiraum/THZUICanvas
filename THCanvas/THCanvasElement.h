@@ -11,17 +11,22 @@
 @interface THCanvasElement : NSObject
 
 @property (nonatomic, assign) CGRect frame;
+@property (nonatomic, readonly, assign) CGPoint center;
+@property (nonatomic, readonly, assign) CGRect bounds;
+@property (nonatomic, assign) CGFloat rotation;
 @property (nonatomic, strong) UIColor* backgroundColor;
-@property (nonatomic, assign) BOOL nonModifiable;
+
 @property (nonatomic, weak) THCanvasElement* parentElement;
 @property (nonatomic, strong) NSMutableSet* childElements;
+
+@property (nonatomic, assign) BOOL modifiable;
 
 - (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor*)backgroundColor;
 
 - (void)addChildElement:(THCanvasElement*)childElement;
 
-- (void)translate:(CGPoint)translation;
-- (void)rotate:(CGFloat)rotation;
-- (void)scale:(CGFloat)scale;
+- (BOOL)translate:(CGPoint)translation;
+- (BOOL)rotate:(CGFloat)rotation;
+- (BOOL)scale:(CGFloat)scale;
 
 @end

@@ -26,7 +26,7 @@
     
     self.rootElement = [[THCanvasElement alloc] initWithFrame:self.view.bounds
                                               backgroundColor:[UIColor clearColor]];
-    self.rootElement.nonModifiable = YES;
+    self.rootElement.modifiable = NO;
     [self.rootElement addChildElement:[[THCanvasElement alloc] initWithFrame:CGRectMake(10, 10, 100, 100)
                                                              backgroundColor:[UIColor redColor]]];
     [self.rootElement addChildElement:[[THCanvasElement alloc] initWithFrame:CGRectMake(50, 120, 150, 150)
