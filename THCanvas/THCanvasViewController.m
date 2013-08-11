@@ -13,8 +13,9 @@
 #import "THCanvasElementView.h"
 #import "THCanvasElement.h"
 
-@interface THCanvasViewController ()
+@interface THCanvasViewController () <UIScrollViewDelegate>
 
+@property (nonatomic, strong) UIScrollView* scrollView;
 @property (nonatomic, strong) THCanvasView* canvasView;
 @property (nonatomic, strong) THCanvasViewRenderer* renderer;
 @property (nonatomic, strong) THCanvasViewInteractionController* interactionController;
@@ -25,19 +26,30 @@
 
 - (id)init
 {
-    NSAssert(NO, @"use initWithRootElement:");
+    NSAssert(NO, @"use initWithCanvasSize:rootElement:");
     return nil;
 }
 
-- (instancetype)initWithRootElement:(THCanvasElement*)rootElement;
+- (instancetype)initWithCanvasSize:(CGSize)canvasSize rootElement:(THCanvasElement*)rootElement
 {
-    NSParameterAssert(rootElement);
+    NSParameterAssert(! CGSizeEqualToSize(CGSizeZero, canvasSize) && rootElement);
     
     self = [super init];
     if (self)
     {
-        self.canvasView = [[THCanvasView alloc] init];
         self.rootElement = rootElement;
+        self.rootElement.frame = (CGRect) { .size = canvasSize };
+        
+        self.canvasView = [[THCanvasView alloc] initWithFrame:(CGRect) { .size = canvasSize }];
+        [self.scrollView addSubview:self.canvasView];
+        self.scrollView.contentSize = canvasSize;
+        self.scrollView.delegate = self;
+        self.scrollView.minimumZoomScale = MIN(1,
+                                               MIN(self.view.bounds.size.width / canvasSize.width,
+                                                   self.view.bounds.size.height / canvasSize.height));
+        self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
+        self.scrollView.bouncesZoom = NO;
+        
         self.interactionController = [[THCanvasViewInteractionController alloc] init];
         self.renderer = [[THCanvasViewRenderer alloc] initWithView:self.canvasView
                                                        rootElement:self.rootElement
@@ -45,6 +57,16 @@
         self.interactionController.renderer = self.renderer;
     }
     return self;
+}
+
+#pragma mark - UIViewController
+
+- (void)loadView
+{
+    [super loadView];
+    
+    self.view = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 }
 
 - (void)viewDidLoad
@@ -61,9 +83,18 @@
 
 #pragma mark - Properties
 
-- (THCanvasView *)canvasView
+- (UIScrollView *)scrollView
 {
-    return (THCanvasView*)self.view;
+    return (UIScrollView*)self.view;
+}
+
+- (void)setScrollView:(UIScrollView *)scrollView
+{
+    NSParameterAssert(scrollView);
+    
+    if (self.scrollView == scrollView) return;
+    
+    self.view = scrollView;
 }
 
 - (void)setCanvasView:(THCanvasView *)canvasView
@@ -72,7 +103,7 @@
     
     if (self.canvasView == canvasView) return;
     
-    self.view = canvasView;
+    _canvasView = canvasView;
     self.renderer.view = self.canvasView;
 }
 
@@ -84,6 +115,13 @@
     
     _rootElement = rootElement;
     self.renderer.rootElement = self.rootElement;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.canvasView;
 }
 
 @end

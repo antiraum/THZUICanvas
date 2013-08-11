@@ -7,41 +7,61 @@
 //
 
 #import "THCanvasElement.h"
+#import "THCanvasElementView.h"
 
 @interface THCanvasElement ()
 
-@property (nonatomic, readonly, assign) CGFloat minSize;
+@property (nonatomic, strong) NSMutableSet* mutableChildElements;
 @property (nonatomic, readonly, assign) CGRect childElementsUnionFrame;
 
 @end
 
 @implementation THCanvasElement
 
-- (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor*)backgroundColor
+- (id)init
 {
+    NSAssert(NO, @"use initWithDataSource:");
+    return nil;
+}
+
+- (instancetype)initWithDataSource:(id<THCanvasElementDataSource>)dataSource
+{
+    NSParameterAssert(dataSource);
+    
     self = [super init];
     if (self)
     {
-        self.modifiable = YES;
-        self.frame = frame;
+        self.dataSource = dataSource;
+        self.frame = (CGRect) {
+            .origin = CGPointZero,
+            .size = self.dataSource.canvasElementMinSize
+        };
         self.rotation = 0;
-        self.backgroundColor = backgroundColor;
-        self.childElements = [NSMutableSet set];
+        self.modifiable = YES;
+        self.mutableChildElements = [NSMutableSet set];
     }
     return self;
 }
 
 #pragma mark - Properties
 
+- (Class)viewClass
+{
+    return [THCanvasElementView class];
+}
+
 - (void)setFrame:(CGRect)frame
 {
     if (CGRectEqualToRect(self.frame, frame)) return;
     
-    _frame = (CGRect) {
+    frame = (CGRect) {
         .origin = frame.origin,
-        .size.width = MAX(self.minSize, frame.size.width),
-        .size.height = MAX(self.minSize, frame.size.height)
+        .size.width = MAX(self.dataSource.canvasElementMinSize.width, frame.size.width),
+        .size.height = MAX(self.dataSource.canvasElementMinSize.width, frame.size.height)
     };
+    
+    if ([self frameIsWithinParentElementBoundsAndContainsAllChildElementFrames:frame])
+        _frame = frame;
 }
 
 - (CGPoint)center
@@ -51,7 +71,7 @@
 
 - (CGRect)bounds
 {
-    return (CGRect) { .origin = CGPointZero, .size = self.frame.size };
+    return (CGRect) { .size = self.frame.size };
 }
 
 - (void)setRotation:(CGFloat)rotation
@@ -65,9 +85,9 @@
     _rotation = rotation;
 }
 
-- (CGFloat)minSize
+- (NSSet*)childElements
 {
-    return 10;
+    return self.mutableChildElements;
 }
 
 - (CGRect)childElementsUnionFrame
@@ -84,8 +104,16 @@
 {
     NSParameterAssert(childElement);
     
-    [self.childElements addObject:childElement];
+    [self.mutableChildElements addObject:childElement];
     childElement.parentElement = self;
+}
+
+- (void)removeChildElement:(THCanvasElement*)childElement
+{
+    NSParameterAssert(childElement);
+    
+    [self.mutableChildElements removeObject:childElement];
+    childElement.parentElement = nil;
 }
 
 - (BOOL)translate:(CGPoint)translation
@@ -96,15 +124,12 @@
     t = CGAffineTransformConcat(t, CGAffineTransformMakeTranslation(translation.x,
                                                                     translation.y));
     t = CGAffineTransformConcat(t, CGAffineTransformMakeRotation(self.rotation));
-    CGRect frame = CGRectApplyAffineTransform(self.frame, t);
-                                              
-    if ([self frameIsWithinParentElementBoundsAndContainsAllChildElementFrames:frame])
-    {
-        self.frame = frame;
-        return YES;
-    }
+    CGRect newFrame = CGRectApplyAffineTransform(self.frame, t);
     
-    return NO;
+    CGRect oldFrame = self.frame;
+    self.frame = newFrame;
+    
+    return (! CGRectEqualToRect(oldFrame, self.frame));
 }
 
 - (BOOL)rotate:(CGFloat)rotation
@@ -123,19 +148,17 @@
     CGSize newSize = CGSizeApplyAffineTransform(self.frame.size,
                                                 CGAffineTransformMakeScale(scale, scale));
     
-    if (newSize.width < self.minSize || newSize.height < self.minSize) return NO;
+    if (newSize.width < self.dataSource.canvasElementMinSize.width
+        || newSize.height < self.dataSource.canvasElementMinSize.height) return NO;
 
-    CGRect frame = CGRectInset(self.frame,
-                               (self.frame.size.width - newSize.width) / 2,
-                               (self.frame.size.height - newSize.height) / 2);
+    CGRect newFrame = CGRectInset(self.frame,
+                                  (self.frame.size.width - newSize.width) / 2,
+                                  (self.frame.size.height - newSize.height) / 2);
     
-    if ([self frameIsWithinParentElementBoundsAndContainsAllChildElementFrames:frame])
-    {
-        self.frame = frame;
-        return YES;
-    }
+    CGRect oldFrame = self.frame;
+    self.frame = newFrame;
     
-    return NO;
+    return (! CGRectEqualToRect(oldFrame, self.frame));
 }
 
 #pragma mark - Util
@@ -144,7 +167,7 @@
 {
     BOOL isWithinParentElementBounds = (! self.parentElement
                                         || CGRectContainsRect(self.parentElement.bounds, frame));
-    CGRect bounds = (CGRect) { .origin = CGPointZero, .size = frame.size };
+    CGRect bounds = (CGRect) { .size = frame.size };
     BOOL containsAllChildElementFrames = CGRectContainsRect(bounds, self.childElementsUnionFrame);
     return (isWithinParentElementBounds && containsAllChildElementFrames);
 }

@@ -142,8 +142,8 @@
         
     } else {
         
-        elementView = [[THCanvasElementView alloc] initWithElement:element
-                                                    gestureHandler:self.elementViewGestureHandler];
+        elementView = [[element.viewClass alloc] initWithElement:element
+                                                  gestureHandler:self.elementViewGestureHandler];
     }
     
     if (element == self.rootElement) self.rootElementView = elementView;
@@ -154,6 +154,22 @@
 - (void)renderRect:(CGRect)rect
 {
     // TODO
+}
+
+#pragma mark - Element View Selection
+
+- (void)selectElementView:(THCanvasElementView*)elementView
+{
+    [self selectElementView:elementView startFromView:self.rootElementView];
+}
+
+- (void)selectElementView:(THCanvasElementView*)elementView
+            startFromView:(THCanvasElementView*)startElementView
+{
+    startElementView.selected = (startElementView == elementView);
+    for (UIView* subview in startElementView.subviews)
+        if ([subview isKindOfClass:[THCanvasElementView class]])
+            [self selectElementView:elementView startFromView:(THCanvasElementView*)subview];
 }
                           
 #pragma mark - Util

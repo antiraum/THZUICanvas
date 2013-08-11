@@ -7,12 +7,47 @@
 //
 
 #import "THAppDelegate.h"
+#import "THCanvasViewController.h"
+#import "THCanvasRootElement.h"
+#import "THCanvasImageElement.h"
+
+@interface THAppDelegate () <THCanvasElementDataSource>
+
+@property (nonatomic, strong) THCanvasViewController* viewController;
+
+@end
 
 @implementation THAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    CGSize canvasSize = CGSizeMake(2 * self.window.bounds.size.width,
+                                   2 * self.window.bounds.size.height);
+    
+    THCanvasRootElement* rootElement = [[THCanvasRootElement alloc] initWithDataSource:self];
+    rootElement.frame = (CGRect) { .size = canvasSize };
+    THCanvasImageElement* childElement1 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    [rootElement addChildElement:childElement1];
+    childElement1.frame = CGRectMake(100, 100, 200, 300);
+    childElement1.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/button-flowers.jpg"];
+    THCanvasImageElement* childElement2 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    [rootElement addChildElement:childElement2];
+    childElement2.frame = CGRectMake(500, 220, 150, 500);
+    childElement2.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/pink-flowers.jpg"];
+    THCanvasImageElement* childElement3 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    [rootElement addChildElement:childElement3];
+    childElement3.frame = CGRectMake(150, 300, 500, 250);
+    childElement3.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/hibiscus-3.jpg"];
+    THCanvasImageElement* childElement4 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    [childElement3 addChildElement:childElement4];
+    childElement4.frame = CGRectMake(25, 25, 100, 50);
+    childElement4.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-3/flowers/red-tulips.jpg"];
+    
+    self.viewController = [[THCanvasViewController alloc] initWithCanvasSize:canvasSize
+                                                                 rootElement:rootElement];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							
@@ -41,6 +76,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - THCanvasElementDataSource
+
+- (CGSize)canvasElementMinSize
+{
+    return CGSizeMake(10, 10);
 }
 
 @end

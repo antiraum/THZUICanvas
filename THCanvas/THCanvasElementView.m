@@ -9,10 +9,6 @@
 #import "THCanvasElementView.h"
 #import "THCanvasElement.h"
 
-@interface THCanvasElementView ()
-
-@end
-
 @implementation THCanvasElementView
 
 - (id)init
@@ -29,33 +25,41 @@
     self = [super init];
     if (self)
     {
+        self.clipsToBounds = YES;
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.borderColor = [[UIColor blueColor] CGColor];
+        
         self.element = element;
         self.gestureHandler = gestureHandler;
         
-        UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPanGesture:)];
-        panGestureRecognizer.maximumNumberOfTouches = 1;
-        panGestureRecognizer.delegate = self.gestureHandler;
-        [self addGestureRecognizer:panGestureRecognizer];
-        
-        UIRotationGestureRecognizer* rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewRotationGesture:)];
-        rotationGestureRecognizer.delegate = self.gestureHandler;
-        [self addGestureRecognizer:rotationGestureRecognizer];
-        
-        UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPinchGesture:)];
-        pinchGestureRecognizer.delegate = self.gestureHandler;
-        [self addGestureRecognizer:pinchGestureRecognizer];
+        if (self.element.modifiable)
+        {
+            UITapGestureRecognizer* singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewSingleTapGesture:)];
+            singleTapGestureRecognizer.numberOfTapsRequired = 1;
+            singleTapGestureRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:singleTapGestureRecognizer];
+            
+            UITapGestureRecognizer* doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewDoubleTapGesture:)];
+            doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+            doubleTapGestureRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:doubleTapGestureRecognizer];
+            
+            UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPanGesture:)];
+            panGestureRecognizer.maximumNumberOfTouches = 1;
+            panGestureRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:panGestureRecognizer];
+            
+            UIRotationGestureRecognizer* rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewRotationGesture:)];
+            rotationGestureRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:rotationGestureRecognizer];
+            
+            UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPinchGesture:)];
+            pinchGestureRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:pinchGestureRecognizer];
+        }
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 #pragma mark - Properties
 
@@ -68,6 +72,15 @@
     [self update];
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    if (self.selected == selected) return;
+    
+    _selected = selected;
+    
+    self.layer.borderWidth = (selected) ? 4 : 0;
+}
+
 #pragma mark - Public Methods
 
 - (void)update
@@ -78,7 +91,6 @@
     self.frame = self.element.frame;
     if (self.element.rotation != 0)
         self.transform = CGAffineTransformMakeRotation(self.element.rotation);
-    self.backgroundColor = self.element.backgroundColor;
 }
 
 @end

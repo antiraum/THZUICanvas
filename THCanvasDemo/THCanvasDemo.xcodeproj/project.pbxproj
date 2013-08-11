@@ -13,8 +13,6 @@
 		E2B15B5317B6355C0059E651 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2B15B5117B6355C0059E651 /* InfoPlist.strings */; };
 		E2B15B5517B6355C0059E651 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B5417B6355C0059E651 /* main.m */; };
 		E2B15B5917B6355C0059E651 /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B5817B6355C0059E651 /* THAppDelegate.m */; };
-		E2B15B5C17B6355C0059E651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B15B5A17B6355C0059E651 /* Main.storyboard */; };
-		E2B15B5F17B6355C0059E651 /* THViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B5E17B6355C0059E651 /* THViewController.m */; };
 		E2B15B6117B6355C0059E651 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B15B6017B6355C0059E651 /* Images.xcassets */; };
 		E2B15B6817B6355C0059E651 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B6717B6355C0059E651 /* XCTest.framework */; };
 		E2B15B6917B6355C0059E651 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4817B6355C0059E651 /* Foundation.framework */; };
@@ -33,6 +31,12 @@
 		E2B15B9117B63A980059E651 /* THCanvasElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B8F17B63A980059E651 /* THCanvasElementView.m */; };
 		E2B15B9517B69E010059E651 /* THCanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B9417B69E010059E651 /* THCanvasViewInteractionController.m */; };
 		E2B15B9617B69E010059E651 /* THCanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15B9417B69E010059E651 /* THCanvasViewInteractionController.m */; };
+		E2B15BA217B7F9D20059E651 /* THCanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BA117B7F9D20059E651 /* THCanvasImageElement.m */; };
+		E2B15BA317B7F9D20059E651 /* THCanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BA117B7F9D20059E651 /* THCanvasImageElement.m */; };
+		E2B15BA617B7F9F70059E651 /* THCanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BA517B7F9F70059E651 /* THCanvasImageElementView.m */; };
+		E2B15BA717B7F9F70059E651 /* THCanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BA517B7F9F70059E651 /* THCanvasImageElementView.m */; };
+		E2B15BAB17B817B10059E651 /* THCanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BAA17B817B10059E651 /* THCanvasRootElement.m */; };
+		E2B15BAC17B817B10059E651 /* THCanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BAA17B817B10059E651 /* THCanvasRootElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +60,6 @@
 		E2B15B5617B6355C0059E651 /* THCanvasDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "THCanvasDemo-Prefix.pch"; sourceTree = "<group>"; };
 		E2B15B5717B6355C0059E651 /* THAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAppDelegate.h; sourceTree = "<group>"; };
 		E2B15B5817B6355C0059E651 /* THAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THAppDelegate.m; sourceTree = "<group>"; };
-		E2B15B5B17B6355C0059E651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E2B15B5D17B6355C0059E651 /* THViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THViewController.h; sourceTree = "<group>"; };
-		E2B15B5E17B6355C0059E651 /* THViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THViewController.m; sourceTree = "<group>"; };
 		E2B15B6017B6355C0059E651 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E2B15B6617B6355C0059E651 /* THCanvasDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THCanvasDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B15B6717B6355C0059E651 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -78,6 +79,13 @@
 		E2B15B9217B67AF70059E651 /* THLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLog.h; path = ../THCanvas/THLog.h; sourceTree = "<group>"; };
 		E2B15B9317B69E010059E651 /* THCanvasViewInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THCanvasViewInteractionController.h; path = ../THCanvas/THCanvasViewInteractionController.h; sourceTree = "<group>"; };
 		E2B15B9417B69E010059E651 /* THCanvasViewInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THCanvasViewInteractionController.m; path = ../THCanvas/THCanvasViewInteractionController.m; sourceTree = "<group>"; };
+		E2B15BA017B7F9D20059E651 /* THCanvasImageElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THCanvasImageElement.h; path = ../THCanvas/THCanvasImageElement.h; sourceTree = "<group>"; };
+		E2B15BA117B7F9D20059E651 /* THCanvasImageElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THCanvasImageElement.m; path = ../THCanvas/THCanvasImageElement.m; sourceTree = "<group>"; };
+		E2B15BA417B7F9F70059E651 /* THCanvasImageElementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THCanvasImageElementView.h; path = ../THCanvas/THCanvasImageElementView.h; sourceTree = "<group>"; };
+		E2B15BA517B7F9F70059E651 /* THCanvasImageElementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THCanvasImageElementView.m; path = ../THCanvas/THCanvasImageElementView.m; sourceTree = "<group>"; };
+		E2B15BA817B815B60059E651 /* THWeakSelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THWeakSelf.h; path = ../THCanvas/THWeakSelf.h; sourceTree = "<group>"; };
+		E2B15BA917B817B10059E651 /* THCanvasRootElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THCanvasRootElement.h; path = ../THCanvas/THCanvasRootElement.h; sourceTree = "<group>"; };
+		E2B15BAA17B817B10059E651 /* THCanvasRootElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THCanvasRootElement.m; path = ../THCanvas/THCanvasRootElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,13 +146,10 @@
 		E2B15B4E17B6355C0059E651 /* THCanvasDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E2B15B5717B6355C0059E651 /* THAppDelegate.h */,
-				E2B15B5817B6355C0059E651 /* THAppDelegate.m */,
-				E2B15B5A17B6355C0059E651 /* Main.storyboard */,
-				E2B15B5D17B6355C0059E651 /* THViewController.h */,
-				E2B15B5E17B6355C0059E651 /* THViewController.m */,
 				E2B15B6017B6355C0059E651 /* Images.xcassets */,
 				E2B15B4F17B6355C0059E651 /* Supporting Files */,
+				E2B15B5717B6355C0059E651 /* THAppDelegate.h */,
+				E2B15B5817B6355C0059E651 /* THAppDelegate.m */,
 			);
 			path = THCanvasDemo;
 			sourceTree = "<group>";
@@ -185,6 +190,12 @@
 				E2B15B8B17B639F90059E651 /* THCanvasElement.m */,
 				E2B15B8E17B63A980059E651 /* THCanvasElementView.h */,
 				E2B15B8F17B63A980059E651 /* THCanvasElementView.m */,
+				E2B15BA017B7F9D20059E651 /* THCanvasImageElement.h */,
+				E2B15BA117B7F9D20059E651 /* THCanvasImageElement.m */,
+				E2B15BA417B7F9F70059E651 /* THCanvasImageElementView.h */,
+				E2B15BA517B7F9F70059E651 /* THCanvasImageElementView.m */,
+				E2B15BA917B817B10059E651 /* THCanvasRootElement.h */,
+				E2B15BAA17B817B10059E651 /* THCanvasRootElement.m */,
 				E2B15B7D17B635990059E651 /* THCanvasView.h */,
 				E2B15B7E17B635990059E651 /* THCanvasView.m */,
 				E2B15B8217B636B60059E651 /* THCanvasViewController.h */,
@@ -194,6 +205,7 @@
 				E2B15B8617B6386B0059E651 /* THCanvasViewRenderer.h */,
 				E2B15B8717B6386B0059E651 /* THCanvasViewRenderer.m */,
 				E2B15B9217B67AF70059E651 /* THLog.h */,
+				E2B15BA817B815B60059E651 /* THWeakSelf.h */,
 			);
 			name = THCanvas;
 			sourceTree = "<group>";
@@ -277,7 +289,6 @@
 			files = (
 				E2B15B6117B6355C0059E651 /* Images.xcassets in Resources */,
 				E2B15B5317B6355C0059E651 /* InfoPlist.strings in Resources */,
-				E2B15B5C17B6355C0059E651 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,13 +308,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B15B7F17B635990059E651 /* THCanvasView.m in Sources */,
+				E2B15BA617B7F9F70059E651 /* THCanvasImageElementView.m in Sources */,
 				E2B15B8817B6386B0059E651 /* THCanvasViewRenderer.m in Sources */,
 				E2B15B8C17B639F90059E651 /* THCanvasElement.m in Sources */,
-				E2B15B5F17B6355C0059E651 /* THViewController.m in Sources */,
 				E2B15B9517B69E010059E651 /* THCanvasViewInteractionController.m in Sources */,
 				E2B15B8417B636B60059E651 /* THCanvasViewController.m in Sources */,
 				E2B15B9017B63A980059E651 /* THCanvasElementView.m in Sources */,
+				E2B15BA217B7F9D20059E651 /* THCanvasImageElement.m in Sources */,
 				E2B15B5917B6355C0059E651 /* THAppDelegate.m in Sources */,
+				E2B15BAB17B817B10059E651 /* THCanvasRootElement.m in Sources */,
 				E2B15B5517B6355C0059E651 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,11 +325,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B15BAC17B817B10059E651 /* THCanvasRootElement.m in Sources */,
+				E2B15BA317B7F9D20059E651 /* THCanvasImageElement.m in Sources */,
 				E2B15B8017B635990059E651 /* THCanvasView.m in Sources */,
 				E2B15B7417B6355C0059E651 /* THCanvasDemoTests.m in Sources */,
 				E2B15B9617B69E010059E651 /* THCanvasViewInteractionController.m in Sources */,
 				E2B15B8517B636B60059E651 /* THCanvasViewController.m in Sources */,
 				E2B15B9117B63A980059E651 /* THCanvasElementView.m in Sources */,
+				E2B15BA717B7F9F70059E651 /* THCanvasImageElementView.m in Sources */,
 				E2B15B8917B6386B0059E651 /* THCanvasViewRenderer.m in Sources */,
 				E2B15B8D17B639F90059E651 /* THCanvasElement.m in Sources */,
 			);
@@ -339,14 +355,6 @@
 				E2B15B5217B6355C0059E651 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E2B15B5A17B6355C0059E651 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2B15B5B17B6355C0059E651 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		E2B15B7017B6355C0059E651 /* InfoPlist.strings */ = {

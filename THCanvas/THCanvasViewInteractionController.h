@@ -12,7 +12,8 @@
 
 @protocol THCanvasElementGestureHandler <NSObject, UIGestureRecognizerDelegate>
 
-- (void)handleElementViewTapGesture:(UITapGestureRecognizer*)recognizer;
+- (void)handleElementViewSingleTapGesture:(UITapGestureRecognizer*)recognizer;
+- (void)handleElementViewDoubleTapGesture:(UITapGestureRecognizer*)recognizer;
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer;
 - (void)handleElementViewRotationGesture:(UIRotationGestureRecognizer*)recognizer;
 - (void)handleElementViewPinchGesture:(UIPinchGestureRecognizer*)recognizer;

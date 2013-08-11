@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) THCanvasElement* rootElement;
 
-- (instancetype)initWithRootElement:(THCanvasElement*)rootElement;
+- (instancetype)initWithCanvasSize:(CGSize)canvasSize rootElement:(THCanvasElement*)rootElement;
 
 @end

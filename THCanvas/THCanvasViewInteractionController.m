@@ -25,15 +25,23 @@
 
 #pragma mark - THCanvasElementGestureHandler
 
-- (void)handleElementViewTapGesture:(UITapGestureRecognizer*)recognizer
+- (void)handleElementViewSingleTapGesture:(UITapGestureRecognizer*)recognizer
 {
     THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
-    // TODO
+    [self.renderer selectElementView:elementView];
+}
+
+- (void)handleElementViewDoubleTapGesture:(UITapGestureRecognizer*)recognizer
+{
+    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    [self.renderer selectElementView:elementView];
+    // TODO: zoom to element
 }
 
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer
 {
     THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    [self.renderer selectElementView:elementView];
     if ([elementView.element translate:[recognizer translationInView:elementView]])
         [self.renderer renderElement:elementView.element];
     [recognizer setTranslation:CGPointZero inView:elementView];
@@ -42,6 +50,7 @@
 - (void)handleElementViewRotationGesture:(UIRotationGestureRecognizer*)recognizer;
 {
     THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    [self.renderer selectElementView:elementView];
     if ([elementView.element rotate:recognizer.rotation])
         [self.renderer renderElement:elementView.element];
     recognizer.rotation = 0;
@@ -50,12 +59,19 @@
 - (void)handleElementViewPinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
     THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    [self.renderer selectElementView:elementView];
     if ([elementView.element scale:recognizer.scale])
         [self.renderer renderElement:elementView.element];
     recognizer.scale = 1;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldReceiveTouch:(UITouch *)touch
+{
+    return ([gestureRecognizer.view isKindOfClass:[THCanvasElementView class]]);
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

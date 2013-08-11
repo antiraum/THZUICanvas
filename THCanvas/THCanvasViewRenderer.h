@@ -11,6 +11,7 @@
 
 @class THCanvasView;
 @class THCanvasElement;
+@class THCanvasElementView;
 
 @interface THCanvasViewRenderer : NSObject
 
@@ -25,5 +26,7 @@
 - (void)render;
 - (void)renderElement:(THCanvasElement*)element;
 - (void)renderRect:(CGRect)rect;
+
+- (void)selectElementView:(THCanvasElementView*)elementView;
 
 @end

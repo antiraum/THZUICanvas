@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) THCanvasElement* element;
 @property (nonatomic, weak) id<THCanvasElementGestureHandler> gestureHandler;
+@property (nonatomic, assign) BOOL selected;
 
 - (instancetype)initWithElement:(THCanvasElement*)element
                  gestureHandler:(id<THCanvasElementGestureHandler>)gestureHandler;
