@@ -9,6 +9,12 @@
 #import "THZUICanvasElementView.h"
 #import "THZUICanvasElement.h"
 
+@interface THZUICanvasElementView ()
+
+@property (nonatomic, readwrite, strong) UIView* childElementContainerView;
+
+@end
+
 @implementation THZUICanvasElementView
 
 - (id)init
@@ -27,35 +33,56 @@
     {
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
-        self.layer.borderColor = [[UIColor blueColor] CGColor];
+        self.layer.borderColor = [[UIColor blueColor] CGColor]; // selection border
         
         self.element = element;
         self.gestureHandler = gestureHandler;
         
+        self.childElementContainerView = [[UIView alloc] initWithFrame:self.bounds];
+        self.childElementContainerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                                           | UIViewAutoresizingFlexibleHeight);
+        [self addSubview:self.childElementContainerView];
+        
         if (self.element.modifiable)
         {
-            UITapGestureRecognizer* singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewSingleTapGesture:)];
-            singleTapGestureRecognizer.numberOfTapsRequired = 1;
-            singleTapGestureRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:singleTapGestureRecognizer];
+            UITapGestureRecognizer* singleTapRecognizer =
+            [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                    action:@selector(handleElementViewSingleTapGesture:)];
+            singleTapRecognizer.numberOfTapsRequired = 1;
+            singleTapRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:singleTapRecognizer];
             
-            UITapGestureRecognizer* doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewDoubleTapGesture:)];
-            doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-            doubleTapGestureRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:doubleTapGestureRecognizer];
+            UITapGestureRecognizer* doubleTapRecognizer =
+            [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                    action:@selector(handleElementViewDoubleTapGesture:)];
+            doubleTapRecognizer.numberOfTapsRequired = 2;
+            doubleTapRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:doubleTapRecognizer];
             
-            UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPanGesture:)];
-            panGestureRecognizer.maximumNumberOfTouches = 1;
-            panGestureRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:panGestureRecognizer];
+            UILongPressGestureRecognizer* longPressRecognizer =
+            [[UILongPressGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                          action:@selector(handleElementViewLongPressGesture:)];
+            longPressRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:longPressRecognizer];
             
-            UIRotationGestureRecognizer* rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewRotationGesture:)];
-            rotationGestureRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:rotationGestureRecognizer];
+            UIPanGestureRecognizer* panRecognizer =
+            [[UIPanGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                    action:@selector(handleElementViewPanGesture:)];
+            panRecognizer.maximumNumberOfTouches = 1;
+            panRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:panRecognizer];
             
-            UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self.gestureHandler action:@selector(handleElementViewPinchGesture:)];
-            pinchGestureRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:pinchGestureRecognizer];
+            UIRotationGestureRecognizer* rotationRecognizer =
+            [[UIRotationGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                         action:@selector(handleElementViewRotationGesture:)];
+            rotationRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:rotationRecognizer];
+            
+            UIPinchGestureRecognizer* pinchRecognizer =
+            [[UIPinchGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                      action:@selector(handleElementViewPinchGesture:)];
+            pinchRecognizer.delegate = self.gestureHandler;
+            [self addGestureRecognizer:pinchRecognizer];
         }
     }
     return self;
@@ -76,6 +103,7 @@
 {
     if (self.selected == selected) return;
     
+    DLog(@"%@ %d %d", self, self.selected, selected);
     _selected = selected;
     
     self.layer.borderWidth = (selected) ? 4 : 0;

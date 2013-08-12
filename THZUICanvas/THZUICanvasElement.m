@@ -126,10 +126,34 @@
 
 - (void)removeChildElement:(THZUICanvasElement*)childElement
 {
-    NSParameterAssert(childElement);
+    NSParameterAssert(childElement && [self.childElements containsObject:childElement]);
     
     [self.mutableChildElements removeObject:childElement];
     childElement.parentElement = nil;
+}
+
+- (BOOL)bringChildElementToFront:(THZUICanvasElement*)childElement
+{
+    NSParameterAssert(childElement && [self.childElements containsObject:childElement]);
+    
+    return [self moveChildElement:childElement toIndex:[self.childElements count] - 1];
+}
+
+- (BOOL)sendChildElementToBack:(THZUICanvasElement*)childElement
+{
+    NSParameterAssert(childElement && [self.childElements containsObject:childElement]);
+    
+    return [self moveChildElement:childElement toIndex:0];
+}
+
+- (BOOL)moveChildElement:(THZUICanvasElement*)childElement toIndex:(NSUInteger)idx
+{
+    NSUInteger currentIdx = [self.mutableChildElements indexOfObject:childElement];
+    if (currentIdx == idx) return NO;
+    
+    [self.mutableChildElements moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:currentIdx]
+                                            toIndex:idx];
+    return YES;
 }
 
 - (BOOL)translate:(CGPoint)translation
@@ -175,6 +199,11 @@
     self.frame = newFrame;
     
     return (! CGRectEqualToRect(oldFrame, self.frame));
+}
+
+- (NSString*)description
+{
+    return NSStringFromCGRect(self.frame);
 }
 
 @end

@@ -16,4 +16,10 @@
     return [THZUICanvasImageElementView class];
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ (%@)",
+            [super description], [self.imageURL lastPathComponent]];
+}
+
 @end

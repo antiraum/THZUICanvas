@@ -14,17 +14,16 @@
 
 @interface THZUICanvasViewRenderer : NSObject
 
-@property (nonatomic, strong) UIView* view;
+@property (nonatomic, strong) UIView* canvasView;
 @property (nonatomic, strong) THZUICanvasElement* rootElement;
 @property (nonatomic, weak) id<THZUICanvasElementGestureHandler> elementViewGestureHandler;
 
-- (instancetype)initWithView:(UIView*)view
-                 rootElement:(THZUICanvasElement*)rootElement
-   elementViewGestureHandler:(id<THZUICanvasElementGestureHandler>)elementViewGestureHandler;
+- (instancetype)initWithCanvasView:(UIView*)canvasView
+                       rootElement:(THZUICanvasElement*)rootElement
+         elementViewGestureHandler:(id<THZUICanvasElementGestureHandler>)elementViewGestureHandler;
 
 - (void)render;
 - (void)renderElement:(THZUICanvasElement*)element;
-- (void)renderRect:(CGRect)rect;
 
 - (void)selectElementView:(THZUICanvasElementView*)elementView;
 

@@ -42,6 +42,14 @@
     [self.scrollView zoomToRect:rect animated:YES];
 }
 
+- (void)handleElementViewLongPressGesture:(UILongPressGestureRecognizer*)recognizer
+{
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
+    [self.renderer selectElementView:elementView];
+    if ([elementView.element.parentElement bringChildElementToFront:elementView.element])
+        [self.renderer renderElement:elementView.element];
+}
+
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer
 {
     THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;

@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) THZUICanvasElement* element;
 @property (nonatomic, weak) id<THZUICanvasElementGestureHandler> gestureHandler;
+@property (nonatomic, readonly, strong) UIView* childElementContainerView;
 @property (nonatomic, assign) BOOL selected;
 
 - (instancetype)initWithElement:(THZUICanvasElement*)element

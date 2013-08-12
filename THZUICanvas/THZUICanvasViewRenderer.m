@@ -26,11 +26,11 @@
     return nil;
 }
 
-- (instancetype)initWithView:(UIView*)view
-                 rootElement:(THZUICanvasElement*)rootElement
-   elementViewGestureHandler:(id<THZUICanvasElementGestureHandler>)elementViewGestureHandler
+- (instancetype)initWithCanvasView:(UIView*)canvasView
+                       rootElement:(THZUICanvasElement*)rootElement
+         elementViewGestureHandler:(id<THZUICanvasElementGestureHandler>)elementViewGestureHandler
 {
-    NSParameterAssert(view && rootElement);
+    NSParameterAssert(canvasView && rootElement);
     
     self = [super init];
     if (self)
@@ -38,7 +38,7 @@
         self.elementViewCache = [[NSCache alloc] init];
         self.elementViewPool = [NSMutableArray array];
         self.elementViewGestureHandler = elementViewGestureHandler;
-        self.view = view;
+        self.canvasView = canvasView;
         self.rootElement = rootElement;
     }
     return self;
@@ -46,13 +46,13 @@
 
 #pragma mark - Properties
 
-- (void)setView:(UIView*)view
+- (void)setCanvasView:(UIView*)canvasView
 {
-    NSParameterAssert(view);
+    NSParameterAssert(canvasView);
     
-    if (self.view == view) return;
+    if (self.canvasView == canvasView) return;
     
-    _view = view;
+    _canvasView = canvasView;
     
     if (self.rootElement)
         [self render];
@@ -66,7 +66,7 @@
     
     _rootElement = rootElement;
     
-    if (self.view)
+    if (self.canvasView)
         [self render];
 }
 
@@ -86,21 +86,31 @@
     
     if (! self.rootElementView) element = self.rootElement;
     
-    [self renderElement:element inParentView:self.rootElementView];
+    NSUInteger index = (element.parentElement ?
+                        [element.parentElement.childElements indexOfObject:element] : 0);
+    [self renderElement:element inParentView:self.rootElementView atIndex:index];
 }
 
-- (void)renderElement:(THZUICanvasElement*)element inParentView:(THZUICanvasElementView*)parentElementView
+- (void)renderElement:(THZUICanvasElement*)element
+         inParentView:(THZUICanvasElementView*)parentElementView
+              atIndex:(NSUInteger)index
 {
     THZUICanvasElementView* elementView = nil;
     if (parentElementView)
         elementView = [self viewForElement:element inView:parentElementView];
-    
+
     if (elementView)
     {
         [elementView update];
         
+        UIView* superview = elementView.superview;
+        if ([superview.subviews indexOfObject:elementView] != index) { // index has changed
+            [elementView removeFromSuperview];
+            [superview insertSubview:elementView atIndex:index];
+        }
+        
         // remove obsolete child element views
-        for (UIView* subview in elementView.subviews)
+        for (UIView* subview in elementView.childElementContainerView.subviews)
             if ([subview isKindOfClass:[THZUICanvasElementView class]]
                 && ! [element.childElements containsObject:[(THZUICanvasElementView*)subview element]])
                 [self recycleElementView:(THZUICanvasElementView*)subview];
@@ -108,12 +118,13 @@
     } else {
         
         elementView = [self elementViewForElement:element];
-        UIView* superview = parentElementView ?: self.view;
-        [superview addSubview:elementView];
+        UIView* superview = (parentElementView ?
+                             parentElementView.childElementContainerView : self.canvasView);
+        [superview insertSubview:elementView atIndex:index];
     }
     
-    for (THZUICanvasElement* childElement in element.childElements)
-        [self renderElement:childElement inParentView:elementView];
+    for (NSUInteger i = 0; i < [element.childElements count]; i++)
+        [self renderElement:element.childElements[i] inParentView:elementView atIndex:i];
 }
 
 - (void)recycleElementView:(THZUICanvasElementView*)elementView
@@ -126,7 +137,7 @@
     [self.elementViewPool addObject:elementView];
     [elementView removeFromSuperview];
     
-    for (UIView* subview in elementView.subviews)
+    for (UIView* subview in elementView.childElementContainerView.subviews)
         if ([subview isKindOfClass:[THZUICanvasElementView class]])
             [self recycleElementView:(THZUICanvasElementView*)subview];
 }
@@ -150,11 +161,6 @@
     return elementView;
 }
 
-- (void)renderRect:(CGRect)rect
-{
-    // TODO
-}
-
 #pragma mark - Element View Selection
 
 - (void)selectElementView:(THZUICanvasElementView*)elementView
@@ -166,7 +172,7 @@
             startFromView:(THZUICanvasElementView*)startElementView
 {
     startElementView.selected = (startElementView == elementView);
-    for (UIView* subview in startElementView.subviews)
+    for (UIView* subview in startElementView.childElementContainerView.subviews)
         if ([subview isKindOfClass:[THZUICanvasElementView class]])
             [self selectElementView:elementView startFromView:(THZUICanvasElementView*)subview];
 }
@@ -174,13 +180,13 @@
 #pragma mark - Util
 
 - (THZUICanvasElementView*)viewForElement:(THZUICanvasElement*)element
-                                inView:(THZUICanvasElementView*)elementView
+                                   inView:(THZUICanvasElementView*)elementView
 {
     NSParameterAssert(element && elementView);
     
     if (elementView.element == element) return elementView;
     
-    for (UIView* subview in elementView.subviews)
+    for (UIView* subview in elementView.childElementContainerView.subviews)
     {
         if (! [subview isKindOfClass:[THZUICanvasElementView class]]) continue;
         
@@ -195,7 +201,7 @@
 }
 
 - (THZUICanvasElementView*)breadthFirstViewForElement:(THZUICanvasElement*)element
-                                           inViews:(NSArray*)elementViews
+                                              inViews:(NSArray*)elementViews
 {
     NSParameterAssert(element && elementViews);
     
@@ -206,7 +212,7 @@
 
     NSMutableArray* newElementViews = [NSMutableArray array];
     for (THZUICanvasElementView* view in elementViews)
-        for (UIView* subview in view.subviews)
+        for (UIView* subview in view.childElementContainerView.subviews)
             if ([subview isKindOfClass:[THZUICanvasElementView class]])
                 [newElementViews addObject:subview];
     

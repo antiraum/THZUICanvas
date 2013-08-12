@@ -14,6 +14,7 @@
 
 - (void)handleElementViewSingleTapGesture:(UITapGestureRecognizer*)recognizer;
 - (void)handleElementViewDoubleTapGesture:(UITapGestureRecognizer*)recognizer;
+- (void)handleElementViewLongPressGesture:(UILongPressGestureRecognizer*)recognizer;
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer;
 - (void)handleElementViewRotationGesture:(UIRotationGestureRecognizer*)recognizer;
 - (void)handleElementViewPinchGesture:(UIPinchGestureRecognizer*)recognizer;

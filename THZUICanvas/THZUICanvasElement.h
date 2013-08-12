@@ -35,6 +35,9 @@
 - (void)addChildElement:(THZUICanvasElement*)childElement;
 - (void)removeChildElement:(THZUICanvasElement*)childElement;
 
+- (BOOL)bringChildElementToFront:(THZUICanvasElement*)childElement;
+- (BOOL)sendChildElementToBack:(THZUICanvasElement*)childElement;
+
 - (BOOL)translate:(CGPoint)translation;
 - (BOOL)rotate:(CGFloat)rotation;
 - (BOOL)scale:(CGFloat)scale;

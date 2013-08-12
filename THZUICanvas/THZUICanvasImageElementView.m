@@ -26,10 +26,10 @@
     if (self)
     {
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:self.imageView];
         self.imageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                            | UIViewAutoresizingFlexibleHeight);
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self insertSubview:self.imageView belowSubview:self.childElementContainerView];
         
         self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.activityView.frame = self.bounds;
@@ -38,7 +38,7 @@
         self.activityView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         self.activityView.layer.borderWidth = 2;
         [self.activityView startAnimating];
-        [self addSubview:self.activityView];
+        [self insertSubview:self.activityView belowSubview:self.childElementContainerView];
         
         static dispatch_queue_t imageLoadingQueue = nil;
         static dispatch_once_t once;

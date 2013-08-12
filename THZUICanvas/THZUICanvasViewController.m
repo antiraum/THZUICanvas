@@ -50,9 +50,9 @@
         self.scrollView.bouncesZoom = NO;
         
         self.interactionController = [[THZUICanvasViewInteractionController alloc] init];
-        self.renderer = [[THZUICanvasViewRenderer alloc] initWithView:self.canvasView
-                                                       rootElement:self.rootElement
-                                         elementViewGestureHandler:self.interactionController];
+        self.renderer = [[THZUICanvasViewRenderer alloc] initWithCanvasView:self.canvasView
+                                                                rootElement:self.rootElement
+                                                  elementViewGestureHandler:self.interactionController];
         self.interactionController.scrollView = self.scrollView;
         self.interactionController.renderer = self.renderer;
     }
@@ -105,7 +105,7 @@
     if (self.canvasView == canvasView) return;
     
     _canvasView = canvasView;
-    self.renderer.view = self.canvasView;
+    self.renderer.canvasView = self.canvasView;
 }
 
 - (void)setRootElement:(THZUICanvasElement*)rootElement
