@@ -53,6 +53,7 @@
         self.renderer = [[THZUICanvasViewRenderer alloc] initWithView:self.canvasView
                                                        rootElement:self.rootElement
                                          elementViewGestureHandler:self.interactionController];
+        self.interactionController.scrollView = self.scrollView;
         self.interactionController.renderer = self.renderer;
     }
     return self;

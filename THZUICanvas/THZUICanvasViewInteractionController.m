@@ -13,11 +13,13 @@
 
 @implementation THZUICanvasViewInteractionController
 
-- (instancetype)initWithRenderer:(THZUICanvasViewRenderer*)renderer
+- (instancetype)initWithScrollView:(UIScrollView*)scrollView
+                          renderer:(THZUICanvasViewRenderer*)renderer;
 {
     self = [super init];
     if (self)
     {
+        self.scrollView = scrollView;
         self.renderer = renderer;
     }
     return self;
@@ -35,7 +37,9 @@
 {
     THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
-    // TODO: zoom to element
+    UIView* canvasView = [self.scrollView.subviews firstObject];
+    CGRect rect = [canvasView convertRect:elementView.frame fromView:elementView.superview];
+    [self.scrollView zoomToRect:rect animated:YES];
 }
 
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer
