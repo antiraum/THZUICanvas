@@ -12,6 +12,7 @@
 
 @interface THZUICanvasImageElementView ()
 
+@property (nonatomic, strong) UIActivityIndicatorView* activityView;
 @property (nonatomic, strong) UIImageView* imageView;
 @property (nonatomic, readonly, strong) THZUICanvasImageElement* imageElement;
 
@@ -26,8 +27,18 @@
     {
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:self.imageView];
-        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        self.imageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                           | UIViewAutoresizingFlexibleHeight);
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityView.frame = self.bounds;
+        self.activityView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                              | UIViewAutoresizingFlexibleHeight);
+        self.activityView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        self.activityView.layer.borderWidth = 2;
+        [self.activityView startAnimating];
+        [self addSubview:self.activityView];
         
         static dispatch_queue_t imageLoadingQueue = nil;
         static dispatch_once_t once;
@@ -47,6 +58,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 wself.imageView.image = [UIImage imageWithData:imageData];
+                [wself.activityView removeFromSuperview];
+                wself.activityView = nil;
             });
         });
     }
