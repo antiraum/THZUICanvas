@@ -82,7 +82,7 @@
 
 - (CGSize)canvasElementMinSize
 {
-    return CGSizeMake(10, 10);
+    return CGSizeMake(75, 75);
 }
 
 @end

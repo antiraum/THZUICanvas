@@ -60,8 +60,24 @@
         .size.height = MAX(self.dataSource.canvasElementMinSize.width, frame.size.height)
     };
     
-    if ([self frameIsWithinParentElementBoundsAndContainsAllChildElementFrames:frame])
+    if ([self frameIsWithMinSizeInParentElementBounds:frame]
+        && [self frameContainsAllChildElementFrames:frame])
         _frame = frame;
+}
+
+- (BOOL)frameIsWithMinSizeInParentElementBounds:(CGRect)frame
+{
+    if (! self.parentElement) return YES;
+    
+    CGRect intersection = CGRectIntersection(self.parentElement.bounds, frame);
+    return (intersection.size.width >= self.dataSource.canvasElementMinSize.width
+            && intersection.size.height >= self.dataSource.canvasElementMinSize.height);
+}
+
+- (BOOL)frameContainsAllChildElementFrames:(CGRect)frame
+{
+    CGRect bounds = (CGRect) { .size = frame.size };
+    return CGRectContainsRect(bounds, self.childElementsUnionFrame);
 }
 
 - (CGPoint)center
@@ -159,17 +175,6 @@
     self.frame = newFrame;
     
     return (! CGRectEqualToRect(oldFrame, self.frame));
-}
-
-#pragma mark - Util
-
-- (BOOL)frameIsWithinParentElementBoundsAndContainsAllChildElementFrames:(CGRect)frame
-{
-    BOOL isWithinParentElementBounds = (! self.parentElement
-                                        || CGRectContainsRect(self.parentElement.bounds, frame));
-    CGRect bounds = (CGRect) { .size = frame.size };
-    BOOL containsAllChildElementFrames = CGRectContainsRect(bounds, self.childElementsUnionFrame);
-    return (isWithinParentElementBounds && containsAllChildElementFrames);
 }
 
 @end
