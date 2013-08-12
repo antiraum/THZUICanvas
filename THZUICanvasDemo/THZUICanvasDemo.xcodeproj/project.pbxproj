@@ -35,8 +35,6 @@
 		E2B15BD417B8E85D0059E651 /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BD117B8E85D0059E651 /* THAppDelegate.m */; };
 		E2B15BDC17B8E87E0059E651 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2B15BD717B8E87E0059E651 /* InfoPlist.strings */; };
 		E2B15BDE17B8E87E0059E651 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BD917B8E87E0059E651 /* main.m */; };
-		E2B15BE017B8E87E0059E651 /* THZUICanvasDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2B15BDA17B8E87E0059E651 /* THZUICanvasDemo-Info.plist */; };
-		E2B15BE417B8E8B00059E651 /* THZUICanvasDemoTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2B15BE217B8E8B00059E651 /* THZUICanvasDemoTests-Info.plist */; };
 		E2B15BE517B8E8B00059E651 /* THZUICanvasDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B15BE317B8E8B00059E651 /* THZUICanvasDemoTests.m */; };
 		E2B15BE917B8E8E50059E651 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2B15BE717B8E8E50059E651 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -307,7 +305,6 @@
 			files = (
 				E2B15BD217B8E85D0059E651 /* Images.xcassets in Resources */,
 				E2B15BDC17B8E87E0059E651 /* InfoPlist.strings in Resources */,
-				E2B15BE017B8E87E0059E651 /* THZUICanvasDemo-Info.plist in Resources */,
 				E2AA327217B8EEF8001D2DF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2B15BE417B8E8B00059E651 /* THZUICanvasDemoTests-Info.plist in Resources */,
 				E2B15BE917B8E8E50059E651 /* InfoPlist.strings in Resources */,
 				E2B15BD317B8E85D0059E651 /* Images.xcassets in Resources */,
 			);
