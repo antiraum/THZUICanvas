@@ -1,6 +1,6 @@
 //
-//  THCanvasViewInteractionController.h
-//  THCanvasDemo
+//  THZUICanvasViewInteractionController.h
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class THCanvasViewRenderer;
+@class THZUICanvasViewRenderer;
 
-@protocol THCanvasElementGestureHandler <NSObject, UIGestureRecognizerDelegate>
+@protocol THZUICanvasElementGestureHandler <NSObject, UIGestureRecognizerDelegate>
 
 - (void)handleElementViewSingleTapGesture:(UITapGestureRecognizer*)recognizer;
 - (void)handleElementViewDoubleTapGesture:(UITapGestureRecognizer*)recognizer;
@@ -20,10 +20,10 @@
 
 @end
 
-@interface THCanvasViewInteractionController : NSObject <THCanvasElementGestureHandler>
+@interface THZUICanvasViewInteractionController : NSObject <THZUICanvasElementGestureHandler>
 
-@property (nonatomic, strong) THCanvasViewRenderer* renderer;
+@property (nonatomic, strong) THZUICanvasViewRenderer* renderer;
 
-- (instancetype)initWithRenderer:(THCanvasViewRenderer*)renderer;
+- (instancetype)initWithRenderer:(THZUICanvasViewRenderer*)renderer;
 
 @end

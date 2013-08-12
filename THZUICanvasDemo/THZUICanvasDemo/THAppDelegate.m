@@ -1,19 +1,19 @@
 //
 //  THAppDelegate.m
-//  THCanvasDemo
+//  THZUICanvasDemo
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
 #import "THAppDelegate.h"
-#import "THCanvasViewController.h"
-#import "THCanvasRootElement.h"
-#import "THCanvasImageElement.h"
+#import "THZUICanvasViewController.h"
+#import "THZUICanvasRootElement.h"
+#import "THZUICanvasImageElement.h"
 
-@interface THAppDelegate () <THCanvasElementDataSource>
+@interface THAppDelegate () <THZUICanvasElementDataSource>
 
-@property (nonatomic, strong) THCanvasViewController* viewController;
+@property (nonatomic, strong) THZUICanvasViewController* viewController;
 
 @end
 
@@ -24,27 +24,27 @@
     CGSize canvasSize = CGSizeMake(2 * self.window.bounds.size.width,
                                    2 * self.window.bounds.size.height);
     
-    THCanvasRootElement* rootElement = [[THCanvasRootElement alloc] initWithDataSource:self];
+    THZUICanvasRootElement* rootElement = [[THZUICanvasRootElement alloc] initWithDataSource:self];
     rootElement.frame = (CGRect) { .size = canvasSize };
-    THCanvasImageElement* childElement1 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement1 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement1];
     childElement1.frame = CGRectMake(100, 100, 400, 600);
     childElement1.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/button-flowers.jpg"];
-    THCanvasImageElement* childElement2 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement2 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement2];
     childElement2.frame = CGRectMake(800, 750, 600, 750);
     childElement2.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/pink-flowers.jpg"];
-    THCanvasImageElement* childElement3 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement3 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement3];
     childElement3.frame = CGRectMake(450, 350, 750, 750);
     childElement3.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/hibiscus-3.jpg"];
-    THCanvasImageElement* childElement4 = [[THCanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement4 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
     [childElement3 addChildElement:childElement4];
     childElement4.frame = CGRectMake(100, 100, 400, 250);
     childElement4.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-3/flowers/red-tulips.jpg"];
     
-    self.viewController = [[THCanvasViewController alloc] initWithCanvasSize:canvasSize
-                                                                 rootElement:rootElement];
+    self.viewController = [[THZUICanvasViewController alloc] initWithCanvasSize:canvasSize
+                                                                    rootElement:rootElement];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
@@ -78,7 +78,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - THCanvasElementDataSource
+#pragma mark - THZUICanvasElementDataSource
 
 - (CGSize)canvasElementMinSize
 {

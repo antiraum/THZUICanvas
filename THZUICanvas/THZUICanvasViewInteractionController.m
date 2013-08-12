@@ -1,19 +1,19 @@
 //
-//  THCanvasViewInteractionController.m
-//  THCanvasDemo
+//  THZUICanvasViewInteractionController.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasViewInteractionController.h"
-#import "THCanvasElementView.h"
-#import "THCanvasElement.h"
-#import "THCanvasViewRenderer.h"
+#import "THZUICanvasViewInteractionController.h"
+#import "THZUICanvasElementView.h"
+#import "THZUICanvasElement.h"
+#import "THZUICanvasViewRenderer.h"
 
-@implementation THCanvasViewInteractionController
+@implementation THZUICanvasViewInteractionController
 
-- (instancetype)initWithRenderer:(THCanvasViewRenderer*)renderer
+- (instancetype)initWithRenderer:(THZUICanvasViewRenderer*)renderer
 {
     self = [super init];
     if (self)
@@ -23,24 +23,24 @@
     return self;
 }
 
-#pragma mark - THCanvasElementGestureHandler
+#pragma mark - THZUICanvasElementGestureHandler
 
 - (void)handleElementViewSingleTapGesture:(UITapGestureRecognizer*)recognizer
 {
-    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
 }
 
 - (void)handleElementViewDoubleTapGesture:(UITapGestureRecognizer*)recognizer
 {
-    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
     // TODO: zoom to element
 }
 
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer
 {
-    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
     if ([elementView.element translate:[recognizer translationInView:elementView]])
         [self.renderer renderElement:elementView.element];
@@ -49,7 +49,7 @@
 
 - (void)handleElementViewRotationGesture:(UIRotationGestureRecognizer*)recognizer;
 {
-    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
     if ([elementView.element rotate:recognizer.rotation])
         [self.renderer renderElement:elementView.element];
@@ -58,7 +58,7 @@
 
 - (void)handleElementViewPinchGesture:(UIPinchGestureRecognizer*)recognizer
 {
-    THCanvasElementView* elementView = (THCanvasElementView*)recognizer.view;
+    THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
     [self.renderer selectElementView:elementView];
     if ([elementView.element scale:recognizer.scale])
         [self.renderer renderElement:elementView.element];
@@ -70,7 +70,7 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
        shouldReceiveTouch:(UITouch *)touch
 {
-    return ([gestureRecognizer.view isKindOfClass:[THCanvasElementView class]]);
+    return ([gestureRecognizer.view isKindOfClass:[THZUICanvasElementView class]]);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer

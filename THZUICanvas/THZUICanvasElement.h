@@ -1,6 +1,6 @@
 //
-//  THCanvasElement.h
-//  THCanvasDemo
+//  THZUICanvasElement.h
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
@@ -8,32 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol THCanvasElementDataSource <NSObject>
+@protocol THZUICanvasElementDataSource <NSObject>
 
 @property (nonatomic, readonly, assign) CGSize canvasElementMinSize;
 
 @end
 
-@interface THCanvasElement : NSObject
+@interface THZUICanvasElement : NSObject
 
 @property (nonatomic, readonly, assign) Class viewClass;
 
-@property (nonatomic, weak) id<THCanvasElementDataSource>dataSource;
+@property (nonatomic, weak) id<THZUICanvasElementDataSource>dataSource;
 
 @property (nonatomic, assign) CGRect frame;
 @property (nonatomic, readonly, assign) CGPoint center;
 @property (nonatomic, readonly, assign) CGRect bounds;
 @property (nonatomic, assign) CGFloat rotation;
 
-@property (nonatomic, weak) THCanvasElement* parentElement;
+@property (nonatomic, weak) THZUICanvasElement* parentElement;
 @property (nonatomic, readonly, strong) NSOrderedSet* childElements;
 
 @property (nonatomic, assign) BOOL modifiable;
 
-- (instancetype)initWithDataSource:(id<THCanvasElementDataSource>)dataSource;
+- (instancetype)initWithDataSource:(id<THZUICanvasElementDataSource>)dataSource;
 
-- (void)addChildElement:(THCanvasElement*)childElement;
-- (void)removeChildElement:(THCanvasElement*)childElement;
+- (void)addChildElement:(THZUICanvasElement*)childElement;
+- (void)removeChildElement:(THZUICanvasElement*)childElement;
 
 - (BOOL)translate:(CGPoint)translation;
 - (BOOL)rotate:(CGFloat)rotation;

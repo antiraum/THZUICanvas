@@ -1,22 +1,22 @@
 //
-//  THCanvasElement.m
-//  THCanvasDemo
+//  THZUICanvasElement.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasElement.h"
-#import "THCanvasElementView.h"
+#import "THZUICanvasElement.h"
+#import "THZUICanvasElementView.h"
 
-@interface THCanvasElement ()
+@interface THZUICanvasElement ()
 
 @property (nonatomic, strong) NSMutableOrderedSet* mutableChildElements;
 @property (nonatomic, readonly, assign) CGRect childElementsUnionFrame;
 
 @end
 
-@implementation THCanvasElement
+@implementation THZUICanvasElement
 
 - (id)init
 {
@@ -24,7 +24,7 @@
     return nil;
 }
 
-- (instancetype)initWithDataSource:(id<THCanvasElementDataSource>)dataSource
+- (instancetype)initWithDataSource:(id<THZUICanvasElementDataSource>)dataSource
 {
     NSParameterAssert(dataSource);
     
@@ -47,7 +47,7 @@
 
 - (Class)viewClass
 {
-    return [THCanvasElementView class];
+    return [THZUICanvasElementView class];
 }
 
 - (void)setFrame:(CGRect)frame
@@ -93,14 +93,14 @@
 - (CGRect)childElementsUnionFrame
 {
     CGRect unionFrame = CGRectNull;
-    for (THCanvasElement* childElement in self.childElements)
+    for (THZUICanvasElement* childElement in self.childElements)
         unionFrame = CGRectUnion(unionFrame, childElement.frame);
     return unionFrame;
 }
 
 #pragma mark - Public Methods
 
-- (void)addChildElement:(THCanvasElement*)childElement
+- (void)addChildElement:(THZUICanvasElement*)childElement
 {
     NSParameterAssert(childElement);
     
@@ -108,7 +108,7 @@
     childElement.parentElement = self;
 }
 
-- (void)removeChildElement:(THCanvasElement*)childElement
+- (void)removeChildElement:(THZUICanvasElement*)childElement
 {
     NSParameterAssert(childElement);
     

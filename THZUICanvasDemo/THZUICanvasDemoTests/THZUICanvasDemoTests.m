@@ -1,6 +1,6 @@
 //
-//  THCanvasDemoTests.m
-//  THCanvasDemoTests
+//  THZUICanvasDemoTests.m
+//  THZUICanvasDemoTests
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface THCanvasDemoTests : XCTestCase
+@interface THZUICanvasDemoTests : XCTestCase
 
 @end
 
-@implementation THCanvasDemoTests
+@implementation THZUICanvasDemoTests
 
 - (void)setUp
 {

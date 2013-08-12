@@ -1,25 +1,24 @@
 //
-//  THCanvasViewRenderer.m
-//  THCanvasDemo
+//  THZUICanvasViewRenderer.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasViewRenderer.h"
-#import "THCanvasView.h"
-#import "THCanvasElement.h"
-#import "THCanvasElementView.h"
+#import "THZUICanvasViewRenderer.h"
+#import "THZUICanvasElement.h"
+#import "THZUICanvasElementView.h"
 
-@interface THCanvasViewRenderer ()
+@interface THZUICanvasViewRenderer ()
 
 @property (nonatomic, strong) NSCache* elementViewCache;
-@property (nonatomic, weak) THCanvasElementView* rootElementView;
+@property (nonatomic, weak) THZUICanvasElementView* rootElementView;
 @property (nonatomic, strong) NSMutableArray* elementViewPool;
 
 @end
 
-@implementation THCanvasViewRenderer
+@implementation THZUICanvasViewRenderer
 
 - (id)init
 {
@@ -27,9 +26,9 @@
     return nil;
 }
 
-- (instancetype)initWithView:(THCanvasView *)view
-                 rootElement:(THCanvasElement *)rootElement
-   elementViewGestureHandler:(id<THCanvasElementGestureHandler>)elementViewGestureHandler
+- (instancetype)initWithView:(UIView*)view
+                 rootElement:(THZUICanvasElement*)rootElement
+   elementViewGestureHandler:(id<THZUICanvasElementGestureHandler>)elementViewGestureHandler
 {
     NSParameterAssert(view && rootElement);
     
@@ -47,7 +46,7 @@
 
 #pragma mark - Properties
 
-- (void)setView:(THCanvasView *)view
+- (void)setView:(UIView*)view
 {
     NSParameterAssert(view);
     
@@ -59,7 +58,7 @@
         [self render];
 }
 
-- (void)setRootElement:(THCanvasElement *)rootElement
+- (void)setRootElement:(THZUICanvasElement *)rootElement
 {
     NSParameterAssert(rootElement);
     
@@ -78,7 +77,7 @@
     [self renderElement:self.rootElement];
 }
 
-- (void)renderElement:(THCanvasElement*)element
+- (void)renderElement:(THZUICanvasElement*)element
 {
     NSParameterAssert(element);
     
@@ -90,9 +89,9 @@
     [self renderElement:element inParentView:self.rootElementView];
 }
 
-- (void)renderElement:(THCanvasElement*)element inParentView:(THCanvasElementView*)parentElementView
+- (void)renderElement:(THZUICanvasElement*)element inParentView:(THZUICanvasElementView*)parentElementView
 {
-    THCanvasElementView* elementView = nil;
+    THZUICanvasElementView* elementView = nil;
     if (parentElementView)
         elementView = [self viewForElement:element inView:parentElementView];
     
@@ -102,9 +101,9 @@
         
         // remove obsolete child element views
         for (UIView* subview in elementView.subviews)
-            if ([subview isKindOfClass:[THCanvasElementView class]]
-                && ! [element.childElements containsObject:[(THCanvasElementView*)subview element]])
-                [self recycleElementView:(THCanvasElementView*)subview];
+            if ([subview isKindOfClass:[THZUICanvasElementView class]]
+                && ! [element.childElements containsObject:[(THZUICanvasElementView*)subview element]])
+                [self recycleElementView:(THZUICanvasElementView*)subview];
         
     } else {
         
@@ -113,11 +112,11 @@
         [superview addSubview:elementView];
     }
     
-    for (THCanvasElement* childElement in element.childElements)
+    for (THZUICanvasElement* childElement in element.childElements)
         [self renderElement:childElement inParentView:elementView];
 }
 
-- (void)recycleElementView:(THCanvasElementView*)elementView
+- (void)recycleElementView:(THZUICanvasElementView*)elementView
 {
     NSParameterAssert(elementView);
     
@@ -128,13 +127,13 @@
     [elementView removeFromSuperview];
     
     for (UIView* subview in elementView.subviews)
-        if ([subview isKindOfClass:[THCanvasElementView class]])
-            [self recycleElementView:(THCanvasElementView*)subview];
+        if ([subview isKindOfClass:[THZUICanvasElementView class]])
+            [self recycleElementView:(THZUICanvasElementView*)subview];
 }
 
-- (THCanvasElementView*)elementViewForElement:(THCanvasElement*)element
+- (THZUICanvasElementView*)elementViewForElement:(THZUICanvasElement*)element
 {
-    THCanvasElementView* elementView = [self.elementViewPool lastObject];
+    THZUICanvasElementView* elementView = [self.elementViewPool lastObject];
     if (elementView)
     {
         [self.elementViewPool removeObject:elementView];
@@ -158,24 +157,24 @@
 
 #pragma mark - Element View Selection
 
-- (void)selectElementView:(THCanvasElementView*)elementView
+- (void)selectElementView:(THZUICanvasElementView*)elementView
 {
     [self selectElementView:elementView startFromView:self.rootElementView];
 }
 
-- (void)selectElementView:(THCanvasElementView*)elementView
-            startFromView:(THCanvasElementView*)startElementView
+- (void)selectElementView:(THZUICanvasElementView*)elementView
+            startFromView:(THZUICanvasElementView*)startElementView
 {
     startElementView.selected = (startElementView == elementView);
     for (UIView* subview in startElementView.subviews)
-        if ([subview isKindOfClass:[THCanvasElementView class]])
-            [self selectElementView:elementView startFromView:(THCanvasElementView*)subview];
+        if ([subview isKindOfClass:[THZUICanvasElementView class]])
+            [self selectElementView:elementView startFromView:(THZUICanvasElementView*)subview];
 }
                           
 #pragma mark - Util
 
-- (THCanvasElementView*)viewForElement:(THCanvasElement*)element
-                                inView:(THCanvasElementView*)elementView
+- (THZUICanvasElementView*)viewForElement:(THZUICanvasElement*)element
+                                inView:(THZUICanvasElementView*)elementView
 {
     NSParameterAssert(element && elementView);
     
@@ -183,32 +182,32 @@
     
     for (UIView* subview in elementView.subviews)
     {
-        if (! [subview isKindOfClass:[THCanvasElementView class]]) continue;
+        if (! [subview isKindOfClass:[THZUICanvasElementView class]]) continue;
         
-        THCanvasElementView* eView = (THCanvasElementView*)subview;
+        THZUICanvasElementView* eView = (THZUICanvasElementView*)subview;
         if (eView.element == element) return eView;
         
-        THCanvasElementView* result = [self viewForElement:element inView:eView];
+        THZUICanvasElementView* result = [self viewForElement:element inView:eView];
         if (result) return result;
     }
     
     return nil;
 }
 
-- (THCanvasElementView*)breadthFirstViewForElement:(THCanvasElement*)element
+- (THZUICanvasElementView*)breadthFirstViewForElement:(THZUICanvasElement*)element
                                            inViews:(NSArray*)elementViews
 {
     NSParameterAssert(element && elementViews);
     
     if ([elementViews count] == 0) return nil;
     
-    for (THCanvasElementView* view in elementViews)
+    for (THZUICanvasElementView* view in elementViews)
         if (view.element == element) return view;
 
     NSMutableArray* newElementViews = [NSMutableArray array];
-    for (THCanvasElementView* view in elementViews)
+    for (THZUICanvasElementView* view in elementViews)
         for (UIView* subview in view.subviews)
-            if ([subview isKindOfClass:[THCanvasElementView class]])
+            if ([subview isKindOfClass:[THZUICanvasElementView class]])
                 [newElementViews addObject:subview];
     
     return [self breadthFirstViewForElement:element inViews:newElementViews];

@@ -1,28 +1,27 @@
 //
-//  THCanvasViewController.m
-//  THCanvasDemo
+//  THZUICanvasViewController.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasViewController.h"
-#import "THCanvasView.h"
-#import "THCanvasViewRenderer.h"
-#import "THCanvasViewInteractionController.h"
-#import "THCanvasElementView.h"
-#import "THCanvasElement.h"
+#import "THZUICanvasViewController.h"
+#import "THZUICanvasViewRenderer.h"
+#import "THZUICanvasViewInteractionController.h"
+#import "THZUICanvasElementView.h"
+#import "THZUICanvasElement.h"
 
-@interface THCanvasViewController () <UIScrollViewDelegate>
+@interface THZUICanvasViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView* scrollView;
-@property (nonatomic, strong) THCanvasView* canvasView;
-@property (nonatomic, strong) THCanvasViewRenderer* renderer;
-@property (nonatomic, strong) THCanvasViewInteractionController* interactionController;
+@property (nonatomic, strong) UIView* canvasView;
+@property (nonatomic, strong) THZUICanvasViewRenderer* renderer;
+@property (nonatomic, strong) THZUICanvasViewInteractionController* interactionController;
 
 @end
 
-@implementation THCanvasViewController
+@implementation THZUICanvasViewController
 
 - (id)init
 {
@@ -30,7 +29,7 @@
     return nil;
 }
 
-- (instancetype)initWithCanvasSize:(CGSize)canvasSize rootElement:(THCanvasElement*)rootElement
+- (instancetype)initWithCanvasSize:(CGSize)canvasSize rootElement:(THZUICanvasElement*)rootElement
 {
     NSParameterAssert(! CGSizeEqualToSize(CGSizeZero, canvasSize) && rootElement);
     
@@ -40,7 +39,7 @@
         self.rootElement = rootElement;
         self.rootElement.frame = (CGRect) { .size = canvasSize };
         
-        self.canvasView = [[THCanvasView alloc] initWithFrame:(CGRect) { .size = canvasSize }];
+        self.canvasView = [[UIView alloc] initWithFrame:(CGRect) { .size = canvasSize }];
         [self.scrollView addSubview:self.canvasView];
         self.scrollView.contentSize = canvasSize;
         self.scrollView.delegate = self;
@@ -50,8 +49,8 @@
         self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
         self.scrollView.bouncesZoom = NO;
         
-        self.interactionController = [[THCanvasViewInteractionController alloc] init];
-        self.renderer = [[THCanvasViewRenderer alloc] initWithView:self.canvasView
+        self.interactionController = [[THZUICanvasViewInteractionController alloc] init];
+        self.renderer = [[THZUICanvasViewRenderer alloc] initWithView:self.canvasView
                                                        rootElement:self.rootElement
                                          elementViewGestureHandler:self.interactionController];
         self.interactionController.renderer = self.renderer;
@@ -83,7 +82,7 @@
 
 #pragma mark - Properties
 
-- (UIScrollView *)scrollView
+- (UIScrollView*)scrollView
 {
     return (UIScrollView*)self.view;
 }
@@ -97,7 +96,7 @@
     self.view = scrollView;
 }
 
-- (void)setCanvasView:(THCanvasView *)canvasView
+- (void)setCanvasView:(UIView*)canvasView
 {
     NSParameterAssert(canvasView);
     
@@ -107,7 +106,7 @@
     self.renderer.view = self.canvasView;
 }
 
-- (void)setRootElement:(THCanvasElement *)rootElement
+- (void)setRootElement:(THZUICanvasElement*)rootElement
 {
     NSParameterAssert(rootElement);
     

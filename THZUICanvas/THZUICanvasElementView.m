@@ -1,15 +1,15 @@
 //
-//  THCanvasElementView.m
-//  THCanvasDemo
+//  THZUICanvasElementView.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 10.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasElementView.h"
-#import "THCanvasElement.h"
+#import "THZUICanvasElementView.h"
+#import "THZUICanvasElement.h"
 
-@implementation THCanvasElementView
+@implementation THZUICanvasElementView
 
 - (id)init
 {
@@ -17,8 +17,8 @@
     return nil;
 }
 
-- (instancetype)initWithElement:(THCanvasElement*)element
-                 gestureHandler:(id<THCanvasElementGestureHandler>)gestureHandler
+- (instancetype)initWithElement:(THZUICanvasElement*)element
+                 gestureHandler:(id<THZUICanvasElementGestureHandler>)gestureHandler
 {
     NSParameterAssert(element && gestureHandler);
     
@@ -63,7 +63,7 @@
 
 #pragma mark - Properties
 
-- (void)setElement:(THCanvasElement *)element
+- (void)setElement:(THZUICanvasElement *)element
 {
     if (self.element == element) return;
     

@@ -1,25 +1,25 @@
 //
-//  THCanvasImageElementView.m
-//  THCanvasDemo
+//  THZUICanvasImageElementView.m
+//  THZUICanvas
 //
 //  Created by Thomas Heß on 11.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
-#import "THCanvasImageElementView.h"
-#import "THCanvasImageElement.h"
+#import "THZUICanvasImageElementView.h"
+#import "THZUICanvasImageElement.h"
 #import "THWeakSelf.h"
 
-@interface THCanvasImageElementView ()
+@interface THZUICanvasImageElementView ()
 
 @property (nonatomic, strong) UIImageView* imageView;
-@property (nonatomic, readonly, strong) THCanvasImageElement* imageElement;
+@property (nonatomic, readonly, strong) THZUICanvasImageElement* imageElement;
 
 @end
 
-@implementation THCanvasImageElementView
+@implementation THZUICanvasImageElementView
 
-- (instancetype)initWithElement:(THCanvasElement *)element gestureHandler:(id<THCanvasElementGestureHandler>)gestureHandler
+- (instancetype)initWithElement:(THZUICanvasElement *)element gestureHandler:(id<THZUICanvasElementGestureHandler>)gestureHandler
 {
     self = [super initWithElement:element gestureHandler:gestureHandler];
     if (self)
@@ -33,7 +33,7 @@
         static dispatch_once_t once;
         dispatch_once(&once, ^{
             imageLoadingQueue =
-            dispatch_queue_create("name.thomashess.THCanvas.THCanvasImageElementView.imageLoading",
+            dispatch_queue_create("name.thomashess.THZUICanvas.THZUICanvasImageElementView.imageLoading",
                                   DISPATCH_QUEUE_CONCURRENT);
             dispatch_set_target_queue(imageLoadingQueue,
                                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
@@ -53,9 +53,9 @@
     return self;
 }
 
-- (THCanvasImageElement*)imageElement
+- (THZUICanvasImageElement*)imageElement
 {
-    return (THCanvasImageElement*)self.element;
+    return (THZUICanvasImageElement*)self.element;
 }
 
 @end
