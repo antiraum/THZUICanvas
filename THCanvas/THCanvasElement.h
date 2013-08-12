@@ -26,7 +26,7 @@
 @property (nonatomic, assign) CGFloat rotation;
 
 @property (nonatomic, weak) THCanvasElement* parentElement;
-@property (nonatomic, readonly, strong) NSSet* childElements;
+@property (nonatomic, readonly, strong) NSOrderedSet* childElements;
 
 @property (nonatomic, assign) BOOL modifiable;
 

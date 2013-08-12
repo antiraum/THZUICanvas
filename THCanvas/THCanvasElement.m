@@ -11,7 +11,7 @@
 
 @interface THCanvasElement ()
 
-@property (nonatomic, strong) NSMutableSet* mutableChildElements;
+@property (nonatomic, strong) NSMutableOrderedSet* mutableChildElements;
 @property (nonatomic, readonly, assign) CGRect childElementsUnionFrame;
 
 @end
@@ -38,7 +38,7 @@
         };
         self.rotation = 0;
         self.modifiable = YES;
-        self.mutableChildElements = [NSMutableSet set];
+        self.mutableChildElements = [NSMutableOrderedSet orderedSet];
     }
     return self;
 }
@@ -85,7 +85,7 @@
     _rotation = rotation;
 }
 
-- (NSSet*)childElements
+- (NSOrderedSet*)childElements
 {
     return self.mutableChildElements;
 }
