@@ -28,19 +28,19 @@
     rootElement.frame = (CGRect) { .size = canvasSize };
     THCanvasImageElement* childElement1 = [[THCanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement1];
-    childElement1.frame = CGRectMake(100, 100, 200, 300);
+    childElement1.frame = CGRectMake(100, 100, 400, 600);
     childElement1.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/button-flowers.jpg"];
     THCanvasImageElement* childElement2 = [[THCanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement2];
-    childElement2.frame = CGRectMake(500, 220, 150, 500);
+    childElement2.frame = CGRectMake(800, 750, 600, 750);
     childElement2.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/pink-flowers.jpg"];
     THCanvasImageElement* childElement3 = [[THCanvasImageElement alloc] initWithDataSource:self];
     [rootElement addChildElement:childElement3];
-    childElement3.frame = CGRectMake(150, 300, 500, 250);
+    childElement3.frame = CGRectMake(450, 350, 750, 750);
     childElement3.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/hibiscus-3.jpg"];
     THCanvasImageElement* childElement4 = [[THCanvasImageElement alloc] initWithDataSource:self];
     [childElement3 addChildElement:childElement4];
-    childElement4.frame = CGRectMake(25, 25, 100, 50);
+    childElement4.frame = CGRectMake(100, 100, 400, 250);
     childElement4.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-3/flowers/red-tulips.jpg"];
     
     self.viewController = [[THCanvasViewController alloc] initWithCanvasSize:canvasSize
