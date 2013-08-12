@@ -66,7 +66,8 @@
     [super loadView];
     
     self.view = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                  | UIViewAutoresizingFlexibleHeight);
 }
 
 - (void)viewDidLoad
