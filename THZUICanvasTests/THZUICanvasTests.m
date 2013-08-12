@@ -1,18 +1,18 @@
 //
-//  THZUICanvasDemoTests.m
-//  THZUICanvasDemoTests
+//  THZUICanvasTests.m
+//  THZUICanvasTests
 //
-//  Created by Thomas Heß on 10.8.13.
+//  Created by Thomas Heß on 12.8.13.
 //  Copyright (c) 2013 Thomas Heß. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface THZUICanvasDemoTests : XCTestCase
+@interface THZUICanvasTests : XCTestCase
 
 @end
 
-@implementation THZUICanvasDemoTests
+@implementation THZUICanvasTests
 
 - (void)setUp
 {
