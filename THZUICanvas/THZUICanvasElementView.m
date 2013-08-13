@@ -43,22 +43,22 @@
                                                            | UIViewAutoresizingFlexibleHeight);
         [self addSubview:self.childElementContainerView];
         
+        UITapGestureRecognizer* singleTapRecognizer =
+        [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                action:@selector(handleElementViewSingleTapGesture:)];
+        singleTapRecognizer.numberOfTapsRequired = 1;
+        singleTapRecognizer.delegate = self.gestureHandler;
+        [self addGestureRecognizer:singleTapRecognizer];
+        
+        UITapGestureRecognizer* doubleTapRecognizer =
+        [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
+                                                action:@selector(handleElementViewDoubleTapGesture:)];
+        doubleTapRecognizer.numberOfTapsRequired = 2;
+        doubleTapRecognizer.delegate = self.gestureHandler;
+        [self addGestureRecognizer:doubleTapRecognizer];
+        
         if (self.element.modifiable)
         {
-            UITapGestureRecognizer* singleTapRecognizer =
-            [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
-                                                    action:@selector(handleElementViewSingleTapGesture:)];
-            singleTapRecognizer.numberOfTapsRequired = 1;
-            singleTapRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:singleTapRecognizer];
-            
-            UITapGestureRecognizer* doubleTapRecognizer =
-            [[UITapGestureRecognizer alloc] initWithTarget:self.gestureHandler
-                                                    action:@selector(handleElementViewDoubleTapGesture:)];
-            doubleTapRecognizer.numberOfTapsRequired = 2;
-            doubleTapRecognizer.delegate = self.gestureHandler;
-            [self addGestureRecognizer:doubleTapRecognizer];
-            
             UILongPressGestureRecognizer* longPressRecognizer =
             [[UILongPressGestureRecognizer alloc] initWithTarget:self.gestureHandler
                                                           action:@selector(handleElementViewLongPressGesture:)];
@@ -103,10 +103,9 @@
 {
     if (self.selected == selected) return;
     
-    DLog(@"%@ %d %d", self, self.selected, selected);
     _selected = selected;
     
-    self.layer.borderWidth = (selected) ? 4 : 0;
+    self.layer.borderWidth = (selected && self.element.modifiable) ? 4 : 0;
 }
 
 #pragma mark - Public Methods
