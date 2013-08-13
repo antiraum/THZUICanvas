@@ -14,7 +14,6 @@
 		E2AA328717B95977001D2DF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4C17B6355C0059E651 /* UIKit.framework */; };
 		E2AA328A17B95977001D2DF8 /* libTHZUICanvas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA327717B95977001D2DF8 /* libTHZUICanvas.a */; };
 		E2AA329017B95977001D2DF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2AA328E17B95977001D2DF8 /* InfoPlist.strings */; };
-		E2AA329217B95977001D2DF8 /* THZUICanvasTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA329117B95977001D2DF8 /* THZUICanvasTests.m */; };
 		E2AA32BC17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
 		E2AA32BD17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
 		E2AA32BE17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
@@ -39,6 +38,7 @@
 		E2AA32D117B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
 		E2AA32D217B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
 		E2AA32D317B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
+		E2AA32D817B95D50001D2DF8 /* THZUICanvasElementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32D717B95D50001D2DF8 /* THZUICanvasElementTests.m */; };
 		E2B15B4917B6355C0059E651 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4817B6355C0059E651 /* Foundation.framework */; };
 		E2B15B4B17B6355C0059E651 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4A17B6355C0059E651 /* CoreGraphics.framework */; };
 		E2B15B4D17B6355C0059E651 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4C17B6355C0059E651 /* UIKit.framework */; };
@@ -77,7 +77,6 @@
 		E2AA328417B95977001D2DF8 /* THZUICanvasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THZUICanvasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2AA328D17B95977001D2DF8 /* THZUICanvasTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "THZUICanvasTests-Info.plist"; sourceTree = "<group>"; };
 		E2AA328F17B95977001D2DF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E2AA329117B95977001D2DF8 /* THZUICanvasTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THZUICanvasTests.m; sourceTree = "<group>"; };
 		E2AA32A917B95A88001D2DF8 /* THLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLog.h; sourceTree = "<group>"; };
 		E2AA32AA17B95A88001D2DF8 /* THWeakSelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWeakSelf.h; sourceTree = "<group>"; };
 		E2AA32AC17B95A88001D2DF8 /* THZUICanvasElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THZUICanvasElement.h; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THZUICanvasViewInteractionController.m; sourceTree = "<group>"; };
 		E2AA32BA17B95A88001D2DF8 /* THZUICanvasViewRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THZUICanvasViewRenderer.h; sourceTree = "<group>"; };
 		E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THZUICanvasViewRenderer.m; sourceTree = "<group>"; };
+		E2AA32D717B95D50001D2DF8 /* THZUICanvasElementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THZUICanvasElementTests.m; sourceTree = "<group>"; };
 		E2B15B4517B6355C0059E651 /* THZUICanvasDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THZUICanvasDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B15B4817B6355C0059E651 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E2B15B4A17B6355C0059E651 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +108,8 @@
 		E2B15BD917B8E87E0059E651 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = THZUICanvasDemo/main.m; sourceTree = SOURCE_ROOT; };
 		E2B15BDA17B8E87E0059E651 /* THZUICanvasDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "THZUICanvasDemo-Info.plist"; path = "THZUICanvasDemo/THZUICanvasDemo-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E2B15BDB17B8E87E0059E651 /* THZUICanvasDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "THZUICanvasDemo-Prefix.pch"; path = "THZUICanvasDemo/THZUICanvasDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E2C81D0E17B96E95002DE934 /* THFloatEqualToFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THFloatEqualToFloat.h; sourceTree = "<group>"; };
+		E2C81D0F17B97055002DE934 /* THFloatEqualToFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THFloatEqualToFloat.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,8 @@
 		E2AA327917B95977001D2DF8 /* THZUICanvas */ = {
 			isa = PBXGroup;
 			children = (
+				E2AA327A17B95977001D2DF8 /* Supporting Files */,
+				E2C81D0E17B96E95002DE934 /* THFloatEqualToFloat.h */,
 				E2AA32A917B95A88001D2DF8 /* THLog.h */,
 				E2AA32AA17B95A88001D2DF8 /* THWeakSelf.h */,
 				E2AA32AC17B95A88001D2DF8 /* THZUICanvasElement.h */,
@@ -164,7 +168,6 @@
 				E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */,
 				E2AA32BA17B95A88001D2DF8 /* THZUICanvasViewRenderer.h */,
 				E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */,
-				E2AA327A17B95977001D2DF8 /* Supporting Files */,
 			);
 			path = THZUICanvas;
 			sourceTree = "<group>";
@@ -180,8 +183,9 @@
 		E2AA328B17B95977001D2DF8 /* THZUICanvasTests */ = {
 			isa = PBXGroup;
 			children = (
-				E2AA329117B95977001D2DF8 /* THZUICanvasTests.m */,
 				E2AA328C17B95977001D2DF8 /* Supporting Files */,
+				E2AA32D717B95D50001D2DF8 /* THZUICanvasElementTests.m */,
+				E2C81D0F17B97055002DE934 /* THFloatEqualToFloat.h */,
 			);
 			path = THZUICanvasTests;
 			sourceTree = "<group>";
@@ -198,11 +202,11 @@
 		E2B15B3C17B6355C0059E651 = {
 			isa = PBXGroup;
 			children = (
-				E2B15B4E17B6355C0059E651 /* THZUICanvasDemo */,
-				E2AA327917B95977001D2DF8 /* THZUICanvas */,
-				E2AA328B17B95977001D2DF8 /* THZUICanvasTests */,
 				E2B15B4717B6355C0059E651 /* Frameworks */,
 				E2B15B4617B6355C0059E651 /* Products */,
+				E2AA327917B95977001D2DF8 /* THZUICanvas */,
+				E2B15B4E17B6355C0059E651 /* THZUICanvasDemo */,
+				E2AA328B17B95977001D2DF8 /* THZUICanvasTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,8 +223,8 @@
 		E2B15B4717B6355C0059E651 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E2B15B4817B6355C0059E651 /* Foundation.framework */,
 				E2B15B4A17B6355C0059E651 /* CoreGraphics.framework */,
+				E2B15B4817B6355C0059E651 /* Foundation.framework */,
 				E2B15B4C17B6355C0059E651 /* UIKit.framework */,
 				E2B15B6717B6355C0059E651 /* XCTest.framework */,
 			);
@@ -392,7 +396,7 @@
 			files = (
 				E2AA32D017B95A88001D2DF8 /* THZUICanvasViewInteractionController.m in Sources */,
 				E2AA32C417B95A88001D2DF8 /* THZUICanvasImageElement.m in Sources */,
-				E2AA329217B95977001D2DF8 /* THZUICanvasTests.m in Sources */,
+				E2AA32D817B95D50001D2DF8 /* THZUICanvasElementTests.m in Sources */,
 				E2AA32CD17B95A88001D2DF8 /* THZUICanvasViewController.m in Sources */,
 				E2AA32D317B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */,
 				E2AA32BE17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "THZUICanvasElement.h"
 #import "THZUICanvasElementView.h"
+#import "THFloatEqualToFloat.h"
 
 @interface THZUICanvasElement ()
 
@@ -96,7 +97,7 @@
     while (rotation >= 2 * M_PI) rotation -= 2 * M_PI;
 	while (rotation < 0) rotation += 2 * M_PI;
     
-    if (self.rotation == rotation) return;
+    if (THFloatEqualToFloat(self.rotation, rotation)) return;
     
     _rotation = rotation;
 }
@@ -174,6 +175,8 @@
 
 - (BOOL)rotate:(CGFloat)rotation
 {
+    if (isnan(rotation)) return NO;
+    
     if (! self.modifiable) return NO;
     
     self.rotation += rotation;
@@ -183,6 +186,8 @@
 
 - (BOOL)scale:(CGFloat)scale
 {
+    if (isnan(scale)) return NO;
+    
     if (! self.modifiable) return NO;
     
     CGSize newSize = CGSizeApplyAffineTransform(self.frame.size,
