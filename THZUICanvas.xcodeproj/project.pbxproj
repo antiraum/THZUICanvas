@@ -331,6 +331,9 @@
 					E2AA328317B95977001D2DF8 = {
 						TestTargetID = E2B15B4417B6355C0059E651;
 					};
+					E2B15B4417B6355C0059E651 = {
+						DevelopmentTeam = S7X4B7QXAR;
+					};
 				};
 			};
 			buildConfigurationList = E2B15B4017B6355C0059E651 /* Build configuration list for PBXProject "THZUICanvas" */;
@@ -464,6 +467,7 @@
 		E2AA329417B95978001D2DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/THZUICanvas.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvas/THZUICanvas-Prefix.pch";
@@ -480,6 +484,7 @@
 		E2AA329517B95978001D2DF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/THZUICanvas.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvas/THZUICanvas-Prefix.pch";
@@ -496,7 +501,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP5.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvas/THZUICanvas-Prefix.pch";
@@ -518,7 +523,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP5.app/Contents/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvas/THZUICanvas-Prefix.pch";
@@ -604,6 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvasDemo/THZUICanvasDemo-Prefix.pch";
 				INFOPLIST_FILE = "THZUICanvasDemo/THZUICanvasDemo-Info.plist";
@@ -617,6 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THZUICanvasDemo/THZUICanvasDemo-Prefix.pch";
 				INFOPLIST_FILE = "THZUICanvasDemo/THZUICanvasDemo-Info.plist";

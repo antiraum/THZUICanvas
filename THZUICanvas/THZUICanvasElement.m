@@ -179,9 +179,10 @@
     
     if (! self.modifiable) return NO;
     
+    CGFloat currentRotation = self.rotation;
     self.rotation += rotation;
     
-    return (self.rotation != rotation);
+    return ! THFloatEqualToFloat(self.rotation, currentRotation);
 }
 
 - (BOOL)scale:(CGFloat)scale

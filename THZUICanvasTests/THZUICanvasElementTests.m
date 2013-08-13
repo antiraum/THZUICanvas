@@ -31,15 +31,15 @@
 - (void)testInit
 {
     THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
-    XCTAssertEquals(element.frame.size, self.canvasElementMinSize,
+    XCTAssertEqual(element.frame.size, self.canvasElementMinSize,
                     @"canvasElementMinSize not respected");
     CGRect smallFrame = CGRectMake(0, 0, 10, 10);
     element.frame = smallFrame;
-    XCTAssertEquals(element.frame.size, self.canvasElementMinSize,
+    XCTAssertEqual(element.frame.size, self.canvasElementMinSize,
                     @"canvasElementMinSize not respected");
     CGRect properFrame = CGRectMake(0, 0, 110, 120);
     element.frame = properFrame;
-    XCTAssertEquals(element.frame, properFrame, @"frame not properly set");
+    XCTAssertEqual(element.frame, properFrame, @"frame not properly set");
 }
 
 - (void)testAddChildElement
@@ -51,9 +51,9 @@
     THZUICanvasElement* child2 = [[THZUICanvasElement alloc] initWithDataSource:self];
     [parent addChildElement:child2];
     XCTAssertTrue([parent.childElements count] == 2, @"second child not added");
-    XCTAssertEquals([parent.childElements lastObject], child2, @"child order wrong");
+    XCTAssertEqual([parent.childElements lastObject], child2, @"child order wrong");
     child1.frame = CGRectMake(1000, 1000, 1000, 1000);
-    XCTAssertEquals(child1.frame.size, self.canvasElementMinSize, @"invalid frame accepted");
+    XCTAssertEqual(child1.frame.size, self.canvasElementMinSize, @"invalid frame accepted");
 }
 
 - (void)testRemoveChildElement
@@ -65,7 +65,7 @@
     [parent addChildElement:child2];
     [parent removeChildElement:child1];
     XCTAssertTrue([parent.childElements count] == 1, @"child not removed");
-    XCTAssertEquals([parent.childElements lastObject], child2, @"wrong child removed");
+    XCTAssertEqual([parent.childElements lastObject], child2, @"wrong child removed");
 }
 
 - (void)testBringChildElementToFront
@@ -78,17 +78,17 @@
     THZUICanvasElement* child3 = [[THZUICanvasElement alloc] initWithDataSource:self];
     [parent addChildElement:child3];
     [parent bringChildElementToFront:child1];
-    XCTAssertEquals(parent.childElements[0], child2, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child3, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child1, @"wrong child order");
     [parent bringChildElementToFront:child3];
-    XCTAssertEquals(parent.childElements[0], child2, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child1, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child3, @"wrong child order");
     [parent bringChildElementToFront:child3];
-    XCTAssertEquals(parent.childElements[0], child2, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child1, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child3, @"wrong child order");
 }
 
 - (void)testSendChildElementToBack
@@ -101,55 +101,59 @@
     THZUICanvasElement* child3 = [[THZUICanvasElement alloc] initWithDataSource:self];
     [parent addChildElement:child3];
     [parent sendChildElementToBack:child3];
-    XCTAssertEquals(parent.childElements[0], child3, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child1, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child2, @"wrong child order");
     [parent sendChildElementToBack:child1];
-    XCTAssertEquals(parent.childElements[0], child1, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child3, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child2, @"wrong child order");
     [parent sendChildElementToBack:child1];
-    XCTAssertEquals(parent.childElements[0], child1, @"wrong child order");
-    XCTAssertEquals(parent.childElements[1], child3, @"wrong child order");
-    XCTAssertEquals(parent.childElements[2], child2, @"wrong child order");
+    XCTAssertEqual(parent.childElements[0], child1, @"wrong child order");
+    XCTAssertEqual(parent.childElements[1], child3, @"wrong child order");
+    XCTAssertEqual(parent.childElements[2], child2, @"wrong child order");
 }
 
 - (void)testTranslate
 {
     THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
     element.frame = CGRectMake(100, 100, 500, 500);
-    [element translate:CGPointMake(100, 100)];
+    XCTAssertTrue([element translate:CGPointMake(100, 100)], @"failed to translate");
     XCTAssertTrue(CGPointEqualToPoint(element.frame.origin, CGPointMake(200, 200)),
                   @"wrong translation");
-    [element translate:CGPointMake(-100, -100)];
+    XCTAssertTrue([element translate:CGPointMake(-100, -100)], @"failed to translate");
     XCTAssertTrue(CGPointEqualToPoint(element.frame.origin, CGPointMake(100, 100)),
                   @"wrong translation");
+    element.modifiable = NO;
+    XCTAssertFalse([element translate:CGPointMake(-100, -100)], @"non-modifiable not respected");
 }
 
 - (void)testRotate
 {
     THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
     XCTAssertTrue(element.rotation == 0, @"wrong initial rotation");
-    [element rotate:M_PI];
-    XCTAssertEqualsWithAccuracy(element.rotation, M_PI, THFloatComparisonEpsilon, @"wrong rotation");
-    [element rotate:-3*M_PI];
-    XCTAssertEqualsWithAccuracy(element.rotation, 0, THFloatComparisonEpsilon, @"wrong rotation");
-    [element rotate:NAN];
-    XCTAssertEqualsWithAccuracy(element.rotation, 0, THFloatComparisonEpsilon, @"wrong rotation");
+    XCTAssertTrue([element rotate:M_PI], @"failed to rotate");
+    XCTAssertEqualWithAccuracy(element.rotation, M_PI, THFloatComparisonEpsilon, @"wrong rotation");
+    XCTAssertTrue([element rotate:-3*M_PI], @"failed to rotate");;
+    XCTAssertEqualWithAccuracy(element.rotation, 0, THFloatComparisonEpsilon, @"wrong rotation");
+    XCTAssertFalse([element rotate:NAN], @"rotated despite NAN");;
+    XCTAssertEqualWithAccuracy(element.rotation, 0, THFloatComparisonEpsilon, @"wrong rotation");
+    element.modifiable = NO;
+    XCTAssertFalse([element rotate:M_PI], @"non-modifiable not respected");
 }
 
 - (void)testScale
 {
     THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
     element.frame = CGRectMake(100, 100, 100, 100);
-    [element scale:2];
-    XCTAssertEquals(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
-    [element scale:-2];
-    XCTAssertEquals(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
-    [element scale:NAN];
-    XCTAssertEquals(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
-    [element scale:0.5];
-    XCTAssertEquals(element.frame, CGRectMake(100, 100, 100, 100), @"wrong scaling");
+    XCTAssertTrue([element scale:2], @"failed to scale");
+    XCTAssertEqual(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
+    XCTAssertFalse([element scale:-2], @"scaled with negative scale");
+    XCTAssertEqual(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
+    XCTAssertFalse([element scale:NAN], @"scaled despite NAN");
+    XCTAssertEqual(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");
+    XCTAssertTrue([element scale:0.5], @"failed to scale");
+    XCTAssertEqual(element.frame, CGRectMake(100, 100, 100, 100), @"wrong scaling");
 }
 
 #pragma mark - THZUICanvasElementDataSource
