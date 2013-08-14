@@ -123,8 +123,9 @@
         [superview insertSubview:elementView atIndex:index];
     }
     
-    for (NSUInteger i = 0; i < [element.childElements count]; i++)
-        [self renderElement:element.childElements[i] inParentView:elementView atIndex:i];
+    [element.childElements enumerateObjectsUsingBlock:^(THZUICanvasElement* childElement, NSUInteger idx, BOOL *stop) {
+        [self renderElement:childElement inParentView:elementView atIndex:idx];
+    }];
 }
 
 - (void)recycleElementView:(THZUICanvasElementView*)elementView
