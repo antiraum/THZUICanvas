@@ -23,8 +23,8 @@
 
 @interface THZUICanvasViewInteractionController : NSObject <THZUICanvasElementGestureHandler>
 
-@property (nonatomic, strong) UIScrollView* scrollView;
-@property (nonatomic, strong) THZUICanvasViewRenderer* renderer;
+@property (nonatomic, weak) UIScrollView* scrollView;
+@property (nonatomic, weak) THZUICanvasViewRenderer* renderer;
 
 - (instancetype)initWithScrollView:(UIScrollView*)scrollView
                           renderer:(THZUICanvasViewRenderer*)renderer;
