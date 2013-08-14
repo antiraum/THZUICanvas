@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E230B04617BABFAF00D42664 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
+		E230B04717BABFAF00D42664 /* THZUICanvasElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AF17B95A88001D2DF8 /* THZUICanvasElementView.m */; };
+		E230B04817BABFAF00D42664 /* THZUICanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B117B95A88001D2DF8 /* THZUICanvasImageElement.m */; };
+		E230B04917BABFAF00D42664 /* THZUICanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B317B95A88001D2DF8 /* THZUICanvasImageElementView.m */; };
+		E230B04A17BABFAF00D42664 /* THZUICanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B517B95A88001D2DF8 /* THZUICanvasRootElement.m */; };
+		E230B04B17BABFAF00D42664 /* THZUICanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B717B95A88001D2DF8 /* THZUICanvasViewController.m */; };
+		E230B04C17BABFAF00D42664 /* THZUICanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */; };
+		E230B04D17BABFAF00D42664 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
 		E2AA327217B8EEF8001D2DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2AA327017B8EEF8001D2DF8 /* Main.storyboard */; };
 		E2AA327817B95977001D2DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4817B6355C0059E651 /* Foundation.framework */; };
 		E2AA328517B95977001D2DF8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B6717B6355C0059E651 /* XCTest.framework */; };
@@ -16,28 +24,20 @@
 		E2AA329017B95977001D2DF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2AA328E17B95977001D2DF8 /* InfoPlist.strings */; };
 		E2AA32BC17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
 		E2AA32BD17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
-		E2AA32BE17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AD17B95A88001D2DF8 /* THZUICanvasElement.m */; };
 		E2AA32BF17B95A88001D2DF8 /* THZUICanvasElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AF17B95A88001D2DF8 /* THZUICanvasElementView.m */; };
 		E2AA32C017B95A88001D2DF8 /* THZUICanvasElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AF17B95A88001D2DF8 /* THZUICanvasElementView.m */; };
-		E2AA32C117B95A88001D2DF8 /* THZUICanvasElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32AF17B95A88001D2DF8 /* THZUICanvasElementView.m */; };
 		E2AA32C217B95A88001D2DF8 /* THZUICanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B117B95A88001D2DF8 /* THZUICanvasImageElement.m */; };
 		E2AA32C317B95A88001D2DF8 /* THZUICanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B117B95A88001D2DF8 /* THZUICanvasImageElement.m */; };
-		E2AA32C417B95A88001D2DF8 /* THZUICanvasImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B117B95A88001D2DF8 /* THZUICanvasImageElement.m */; };
 		E2AA32C517B95A88001D2DF8 /* THZUICanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B317B95A88001D2DF8 /* THZUICanvasImageElementView.m */; };
 		E2AA32C617B95A88001D2DF8 /* THZUICanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B317B95A88001D2DF8 /* THZUICanvasImageElementView.m */; };
-		E2AA32C717B95A88001D2DF8 /* THZUICanvasImageElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B317B95A88001D2DF8 /* THZUICanvasImageElementView.m */; };
 		E2AA32C817B95A88001D2DF8 /* THZUICanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B517B95A88001D2DF8 /* THZUICanvasRootElement.m */; };
 		E2AA32C917B95A88001D2DF8 /* THZUICanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B517B95A88001D2DF8 /* THZUICanvasRootElement.m */; };
-		E2AA32CA17B95A88001D2DF8 /* THZUICanvasRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B517B95A88001D2DF8 /* THZUICanvasRootElement.m */; };
 		E2AA32CB17B95A88001D2DF8 /* THZUICanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B717B95A88001D2DF8 /* THZUICanvasViewController.m */; };
 		E2AA32CC17B95A88001D2DF8 /* THZUICanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B717B95A88001D2DF8 /* THZUICanvasViewController.m */; };
-		E2AA32CD17B95A88001D2DF8 /* THZUICanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B717B95A88001D2DF8 /* THZUICanvasViewController.m */; };
 		E2AA32CE17B95A88001D2DF8 /* THZUICanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */; };
 		E2AA32CF17B95A88001D2DF8 /* THZUICanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */; };
-		E2AA32D017B95A88001D2DF8 /* THZUICanvasViewInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32B917B95A88001D2DF8 /* THZUICanvasViewInteractionController.m */; };
 		E2AA32D117B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
 		E2AA32D217B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
-		E2AA32D317B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32BB17B95A88001D2DF8 /* THZUICanvasViewRenderer.m */; };
 		E2AA32D817B95D50001D2DF8 /* THZUICanvasElementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AA32D717B95D50001D2DF8 /* THZUICanvasElementTests.m */; };
 		E2B15B4917B6355C0059E651 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4817B6355C0059E651 /* Foundation.framework */; };
 		E2B15B4B17B6355C0059E651 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B15B4A17B6355C0059E651 /* CoreGraphics.framework */; };
@@ -329,7 +329,7 @@
 				ORGANIZATIONNAME = "Thomas Heß";
 				TargetAttributes = {
 					E2AA328317B95977001D2DF8 = {
-						TestTargetID = E2B15B4417B6355C0059E651;
+						TestTargetID = E2AA327617B95977001D2DF8;
 					};
 					E2B15B4417B6355C0059E651 = {
 						DevelopmentTeam = S7X4B7QXAR;
@@ -397,15 +397,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AA32D017B95A88001D2DF8 /* THZUICanvasViewInteractionController.m in Sources */,
-				E2AA32C417B95A88001D2DF8 /* THZUICanvasImageElement.m in Sources */,
+				E230B04C17BABFAF00D42664 /* THZUICanvasViewInteractionController.m in Sources */,
 				E2AA32D817B95D50001D2DF8 /* THZUICanvasElementTests.m in Sources */,
-				E2AA32CD17B95A88001D2DF8 /* THZUICanvasViewController.m in Sources */,
-				E2AA32D317B95A88001D2DF8 /* THZUICanvasViewRenderer.m in Sources */,
-				E2AA32BE17B95A88001D2DF8 /* THZUICanvasElement.m in Sources */,
-				E2AA32C717B95A88001D2DF8 /* THZUICanvasImageElementView.m in Sources */,
-				E2AA32C117B95A88001D2DF8 /* THZUICanvasElementView.m in Sources */,
-				E2AA32CA17B95A88001D2DF8 /* THZUICanvasRootElement.m in Sources */,
+				E230B04B17BABFAF00D42664 /* THZUICanvasViewController.m in Sources */,
+				E230B04817BABFAF00D42664 /* THZUICanvasImageElement.m in Sources */,
+				E230B04D17BABFAF00D42664 /* THZUICanvasViewRenderer.m in Sources */,
+				E230B04717BABFAF00D42664 /* THZUICanvasElementView.m in Sources */,
+				E230B04A17BABFAF00D42664 /* THZUICanvasRootElement.m in Sources */,
+				E230B04617BABFAF00D42664 /* THZUICanvasElement.m in Sources */,
+				E230B04917BABFAF00D42664 /* THZUICanvasImageElementView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +497,6 @@
 		E2AA329717B95978001D2DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/THZUICanvasDemo.app/THZUICanvasDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -511,7 +510,6 @@
 				);
 				INFOPLIST_FILE = "THZUICanvasTests/THZUICanvasTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -519,7 +517,6 @@
 		E2AA329817B95978001D2DF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/THZUICanvasDemo.app/THZUICanvasDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -529,7 +526,6 @@
 				GCC_PREFIX_HEADER = "THZUICanvas/THZUICanvas-Prefix.pch";
 				INFOPLIST_FILE = "THZUICanvasTests/THZUICanvasTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
