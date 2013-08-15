@@ -11,6 +11,17 @@
 #import "THZUICanvasElement.h"
 #import "THZUICanvasViewRenderer.h"
 
+#define AUTO_SCROLL_EDGE_WIDTH 50
+#define AUTO_SCROLL_IVAL .01
+#define AUTO_SCROLL_STEP 7
+
+@interface THZUICanvasViewInteractionController ()
+
+@property (nonatomic, strong) NSTimer* autoScrollingTimer;
+@property (nonatomic, assign) CGPoint autoScrolling;
+
+@end
+
 @implementation THZUICanvasViewInteractionController
 
 - (instancetype)initWithScrollView:(UIScrollView*)scrollView
@@ -50,6 +61,8 @@
         [self.renderer renderElement:elementView.element];
 }
 
+#define THMovingCanvasElementKey @"THMovingCanvasElementKey"
+
 - (void)handleElementViewPanGesture:(UIPanGestureRecognizer*)recognizer
 {
     THZUICanvasElementView* elementView = (THZUICanvasElementView*)recognizer.view;
@@ -57,6 +70,81 @@
     if ([elementView.element translate:[recognizer translationInView:elementView]])
         [self.renderer renderElement:elementView.element];
     [recognizer setTranslation:CGPointZero inView:elementView];
+    
+    if (recognizer.state != UIGestureRecognizerStateBegan
+        && recognizer.state != UIGestureRecognizerStateChanged)
+    {
+        // end auto scrolling
+        [self.autoScrollingTimer invalidate];
+        self.autoScrollingTimer = nil;
+        return;
+    }
+
+    // determine auto scrolling
+    CGPoint locationInScrollview = [recognizer locationInView:self.renderer.canvasView];
+    locationInScrollview.x -= self.scrollView.contentOffset.x;
+    locationInScrollview.y -= self.scrollView.contentOffset.y;
+    CGPoint autoScroll = CGPointZero;
+    if (locationInScrollview.x < AUTO_SCROLL_EDGE_WIDTH)
+        autoScroll.x = -AUTO_SCROLL_STEP;
+    else if (locationInScrollview.x > self.scrollView.frame.size.width - AUTO_SCROLL_EDGE_WIDTH)
+        autoScroll.x = AUTO_SCROLL_STEP;
+    if (locationInScrollview.y < AUTO_SCROLL_EDGE_WIDTH)
+        autoScroll.y = -AUTO_SCROLL_STEP;
+    else if (locationInScrollview.y > self.scrollView.frame.size.height - AUTO_SCROLL_EDGE_WIDTH)
+        autoScroll.y = AUTO_SCROLL_STEP;
+    self.autoScrolling = autoScroll;
+    
+    if (CGPointEqualToPoint(CGPointZero, self.autoScrolling)
+        || self.autoScrollingTimer) return;
+    
+    // setup auto scrolling timer
+    self.autoScrollingTimer = [NSTimer timerWithTimeInterval:AUTO_SCROLL_IVAL target:self
+                                                    selector:@selector(autoScroll:)
+                                                    userInfo:@{ THMovingCanvasElementKey : elementView.element }
+                                                     repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.autoScrollingTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)autoScroll:(NSTimer*)timer
+{
+    if (CGPointEqualToPoint(CGPointZero, self.autoScrolling))
+    {
+        // end auto scrolling
+        [self.autoScrollingTimer invalidate];
+        self.autoScrollingTimer = nil;
+        return;
+    }
+    
+    // calculate new offset
+    CGPoint contentOffset = self.scrollView.contentOffset;
+    CGPoint newContentOffset = (CGPoint) {
+        .x = MIN(MAX(0, contentOffset.x + self.autoScrolling.x),
+                 self.scrollView.contentSize.width - self.scrollView.bounds.size.width),
+        .y = MIN(MAX(0, contentOffset.y + self.autoScrolling.y),
+                 self.scrollView.contentSize.height - self.scrollView.bounds.size.height)
+    };
+    
+    // translate element view
+    CGPoint translation = (CGPoint) {
+        .x = newContentOffset.x - contentOffset.x,
+        .y = newContentOffset.y - contentOffset.y
+    };
+    THZUICanvasElement* element = timer.userInfo[THMovingCanvasElementKey];
+    CGPoint oldCenter = element.center;
+    if (! [element translate:translation]) return;
+    [self.renderer renderElement:element];
+    
+    // re-calculate new offset based on the actual element translation
+    newContentOffset = (CGPoint) {
+        .x = MIN(MAX(0, contentOffset.x + element.center.x - oldCenter.x),
+                 self.scrollView.contentSize.width - self.scrollView.bounds.size.width),
+        .y = MIN(MAX(0, contentOffset.y + element.center.y - oldCenter.y),
+                 self.scrollView.contentSize.height - self.scrollView.bounds.size.height)
+    };
+    
+    // adjust content offset
+    [self.scrollView setContentOffset:newContentOffset animated:NO];
 }
 
 - (void)handleElementViewRotationGesture:(UIRotationGestureRecognizer*)recognizer;
