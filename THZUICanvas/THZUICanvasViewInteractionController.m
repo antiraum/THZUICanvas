@@ -11,10 +11,6 @@
 #import "THZUICanvasElement.h"
 #import "THZUICanvasViewRenderer.h"
 
-#define AUTO_SCROLL_EDGE_WIDTH 50
-#define AUTO_SCROLL_IVAL .01
-#define AUTO_SCROLL_STEP 7
-
 @interface THZUICanvasViewInteractionController ()
 
 @property (nonatomic, strong) NSTimer* autoScrollingTimer;
@@ -23,6 +19,10 @@
 @end
 
 @implementation THZUICanvasViewInteractionController
+
+#define AUTO_SCROLL_EDGE_WIDTH 50
+#define AUTO_SCROLL_IVAL .01
+#define AUTO_SCROLL_STEP 7
 
 - (instancetype)initWithScrollView:(UIScrollView*)scrollView
                           renderer:(THZUICanvasViewRenderer*)renderer;
