@@ -153,8 +153,8 @@
         
     } else {
         
-        elementView = [[element.viewClass alloc] initWithElement:element
-                                                  gestureHandler:self.elementViewGestureHandler];
+        elementView = [[[element.class viewClass] alloc] initWithElement:element
+                                                          gestureHandler:self.elementViewGestureHandler];
     }
     
     if (element == self.rootElement) self.rootElementView = elementView;

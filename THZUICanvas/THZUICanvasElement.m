@@ -19,6 +19,11 @@
 
 @implementation THZUICanvasElement
 
++ (Class)viewClass
+{
+    return [THZUICanvasElementView class];
+}
+
 - (id)init
 {
     NSAssert(NO, @"use initWithDataSource:");
@@ -45,11 +50,6 @@
 }
 
 #pragma mark - Properties
-
-- (Class)viewClass
-{
-    return [THZUICanvasElementView class];
-}
 
 - (void)setFrame:(CGRect)frame
 {

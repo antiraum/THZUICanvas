@@ -16,8 +16,6 @@
 
 @interface THZUICanvasElement : NSObject
 
-@property (nonatomic, readonly, assign) Class viewClass;
-
 @property (nonatomic, weak) id<THZUICanvasElementDataSource>dataSource;
 
 @property (nonatomic, assign) CGRect frame;
@@ -29,6 +27,8 @@
 @property (nonatomic, readonly, strong) NSOrderedSet* childElements;
 
 @property (nonatomic, assign) BOOL modifiable;
+
++ (Class)viewClass;
 
 - (instancetype)initWithDataSource:(id<THZUICanvasElementDataSource>)dataSource;
 

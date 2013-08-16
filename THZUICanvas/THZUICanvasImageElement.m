@@ -11,7 +11,7 @@
 
 @implementation THZUICanvasImageElement
 
-- (Class)viewClass
++ (Class)viewClass
 {
     return [THZUICanvasImageElementView class];
 }
