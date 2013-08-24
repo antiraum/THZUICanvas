@@ -24,6 +24,11 @@
     return [THZUICanvasElementView class];
 }
 
++ (instancetype)canvasElementWithDataSource:(id<THZUICanvasElementDataSource>)dataSource
+{
+    return [[[self class] alloc] initWithDataSource:dataSource];
+}
+
 - (id)init
 {
     NSAssert(NO, @"use initWithDataSource:");

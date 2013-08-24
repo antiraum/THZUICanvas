@@ -30,6 +30,7 @@
 
 + (Class)viewClass;
 
++ (instancetype)canvasElementWithDataSource:(id<THZUICanvasElementDataSource>)dataSource;
 - (instancetype)initWithDataSource:(id<THZUICanvasElementDataSource>)dataSource;
 
 - (void)addChildElement:(THZUICanvasElement*)childElement;

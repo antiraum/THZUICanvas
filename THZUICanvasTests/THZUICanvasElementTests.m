@@ -30,7 +30,7 @@
 
 - (void)testInit
 {
-    THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* element = [THZUICanvasElement canvasElementWithDataSource:self];
     XCTAssertEqual(element.frame.size, self.canvasElementMinSize,
                     @"canvasElementMinSize not respected");
     CGRect smallFrame = CGRectMake(0, 0, 10, 10);
@@ -44,11 +44,11 @@
 
 - (void)testAddChildElement
 {
-    THZUICanvasElement* parent = [[THZUICanvasElement alloc] initWithDataSource:self];
-    THZUICanvasElement* child1 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* parent = [THZUICanvasElement canvasElementWithDataSource:self];
+    THZUICanvasElement* child1 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child1];
     XCTAssertTrue([parent.childElements count] == 1, @"first child not added");
-    THZUICanvasElement* child2 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child2 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child2];
     XCTAssertTrue([parent.childElements count] == 2, @"second child not added");
     XCTAssertEqual([parent.childElements lastObject], child2, @"child order wrong");
@@ -58,10 +58,10 @@
 
 - (void)testRemoveChildElement
 {
-    THZUICanvasElement* parent = [[THZUICanvasElement alloc] initWithDataSource:self];
-    THZUICanvasElement* child1 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* parent = [THZUICanvasElement canvasElementWithDataSource:self];
+    THZUICanvasElement* child1 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child1];
-    THZUICanvasElement* child2 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child2 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child2];
     [parent removeChildElement:child1];
     XCTAssertTrue([parent.childElements count] == 1, @"child not removed");
@@ -70,12 +70,12 @@
 
 - (void)testBringChildElementToFront
 {
-    THZUICanvasElement* parent = [[THZUICanvasElement alloc] initWithDataSource:self];
-    THZUICanvasElement* child1 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* parent = [THZUICanvasElement canvasElementWithDataSource:self];
+    THZUICanvasElement* child1 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child1];
-    THZUICanvasElement* child2 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child2 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child2];
-    THZUICanvasElement* child3 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child3 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child3];
     [parent bringChildElementToFront:child1];
     XCTAssertEqual(parent.childElements[0], child2, @"wrong child order");
@@ -93,12 +93,12 @@
 
 - (void)testSendChildElementToBack
 {
-    THZUICanvasElement* parent = [[THZUICanvasElement alloc] initWithDataSource:self];
-    THZUICanvasElement* child1 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* parent = [THZUICanvasElement canvasElementWithDataSource:self];
+    THZUICanvasElement* child1 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child1];
-    THZUICanvasElement* child2 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child2 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child2];
-    THZUICanvasElement* child3 = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* child3 = [THZUICanvasElement canvasElementWithDataSource:self];
     [parent addChildElement:child3];
     [parent sendChildElementToBack:child3];
     XCTAssertEqual(parent.childElements[0], child3, @"wrong child order");
@@ -116,7 +116,7 @@
 
 - (void)testTranslate
 {
-    THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* element = [THZUICanvasElement canvasElementWithDataSource:self];
     element.frame = CGRectMake(100, 100, 500, 500);
     XCTAssertTrue([element translate:CGPointMake(100, 100)], @"failed to translate");
     XCTAssertTrue(CGPointEqualToPoint(element.frame.origin, CGPointMake(200, 200)),
@@ -130,7 +130,7 @@
 
 - (void)testRotate
 {
-    THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* element = [THZUICanvasElement canvasElementWithDataSource:self];
     XCTAssertTrue(element.rotation == 0, @"wrong initial rotation");
     XCTAssertTrue([element rotate:M_PI], @"failed to rotate");
     XCTAssertEqualWithAccuracy(element.rotation, M_PI, THFloatComparisonEpsilon, @"wrong rotation");
@@ -144,7 +144,7 @@
 
 - (void)testScale
 {
-    THZUICanvasElement* element = [[THZUICanvasElement alloc] initWithDataSource:self];
+    THZUICanvasElement* element = [THZUICanvasElement canvasElementWithDataSource:self];
     element.frame = CGRectMake(100, 100, 100, 100);
     XCTAssertTrue([element scale:2], @"failed to scale");
     XCTAssertEqual(element.frame, CGRectMake(50, 50, 200, 200), @"wrong scaling");

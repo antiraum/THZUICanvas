@@ -24,21 +24,21 @@
     CGSize canvasSize = CGSizeMake(2 * self.window.bounds.size.width,
                                    2 * self.window.bounds.size.height);
     
-    THZUICanvasRootElement* rootElement = [[THZUICanvasRootElement alloc] initWithDataSource:self];
+    THZUICanvasRootElement* rootElement = [THZUICanvasRootElement canvasElementWithDataSource:self];
     rootElement.frame = (CGRect) { .size = canvasSize };
-    THZUICanvasImageElement* childElement1 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement1 = [THZUICanvasImageElement canvasElementWithDataSource:self];
     [rootElement addChildElement:childElement1];
     childElement1.frame = CGRectMake(100, 100, 400, 600);
     childElement1.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/button-flowers.jpg"];
-    THZUICanvasImageElement* childElement2 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement2 = [THZUICanvasImageElement canvasElementWithDataSource:self];
     [rootElement addChildElement:childElement2];
     childElement2.frame = CGRectMake(800, 750, 600, 750);
     childElement2.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/pink-flowers.jpg"];
-    THZUICanvasImageElement* childElement3 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement3 = [THZUICanvasImageElement canvasElementWithDataSource:self];
     [rootElement addChildElement:childElement3];
     childElement3.frame = CGRectMake(450, 350, 750, 750);
     childElement3.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-4/flowers/hibiscus-3.jpg"];
-    THZUICanvasImageElement* childElement4 = [[THZUICanvasImageElement alloc] initWithDataSource:self];
+    THZUICanvasImageElement* childElement4 = [THZUICanvasImageElement canvasElementWithDataSource:self];
     [childElement3 addChildElement:childElement4];
     childElement4.frame = CGRectMake(100, 100, 400, 250);
     childElement4.imageURL = [NSURL URLWithString:@"http://www.public-domain-photos.com/free-stock-photos-3/flowers/red-tulips.jpg"];
